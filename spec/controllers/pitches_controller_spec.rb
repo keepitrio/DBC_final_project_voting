@@ -9,10 +9,55 @@ RSpec.describe PitchesController, type: :controller do
 
     it "renders the index page" do 
       get :index
-      expect(response).to have_rendered('games/index')
+      expect(response).to have_rendered('pitches/index')
     end 
   end
-end
+  describe "GET #new" do
+    before(:each) { get :new }
+    it "responds with status code 200" do
+      expect(response).to have_http_status(200)
+    end
+
+    it "assigns a new pitch to @pitch" do
+      expect(assigns(:pitch)).to be_a_new Pitch
+    end
+
+    it "renders the :new template" do
+      expect(response).to render_template(:new)
+    end
+  end
+
+  describe "POST #create" do
+    before(:each) { post :create, { pitch: { title: "Costpers", description: "Find the value of your purchase" } } }
+    context "when valid params are passed" do
+    it "responds with status code 302" do
+      expect(response).to have_http_status(302)
+    end
+
+    it "creates a new pitch in the database" do
+      expect { post :create, { pitch: { title: "Costpers", description: "Find the value of your purchase" } } }.to change(Pitch, :count).by(1)
+    end
+
+    it "redirects to the created pitch" do
+      expect(response).to redirect_to pitch_path(Pitch.last.id)
+    end
+  end
+
+    # context "when invalid params are passed" do
+    #   before(:each) { post :create, { pitch: { description: "Find the value of your purchase" } }
+    #   it "responds with status code 422: Unprocessable Entity" do
+    #     expect(response).to have_http_status 422
+    #   end
+
+    #   it "does not create a new pitch in the database" do
+    #     expect{Pitch.all.count}.not_to change(Pitch, :count)
+    #   end
+
+    #   it "renders the :new template" do
+    #     expect(response).to have_rendered('pitches/new')
+    #   end
+    # end
+
 
 
 
@@ -49,64 +94,8 @@ end
 #     end
 #   end
 
-#   describe "GET #new" do
-#     before(:each) { get :new }
-#     it "responds with status code 200" do
-#       expect(response).to have_http_status(200)
-#     end
 
-#     it "assigns a new game to @game" do
-#       expect(assigns(:game)).to be_a_new Game
-#     end
-
-#     it "renders the :new template" do
-#       expect(response).to render_template(:new)
-#     end
-#   end
-
-#   describe "POST #create" do
-#     before(:each) { post :create, { game: { user_throw: "rock" } } }
-#     context "when valid params are passed" do
-#       it "responds with status code 302" do
-#         expect(response).to have_http_status(302)
-#       end
-
-#       it "creates a new game in the database" do
-#         expect{ post :create, { game: { user_throw: "rock" } } }.to change(Game, :count).by(1)
-#       end
-
-#       it "assigns the newly created game as @game" do
-#         expect(assigns(:game).user_throw).to eq("rock")
-#       end
-
-#       it "sets a notice that the game was successfully created" do
-#         expect(flash[:notice]).to eq 'Game was successfully created.'
-#       end
-
-#       it "redirects to the created game" do
-#         expect(response).to redirect_to game_path(Game.last.id)
-#       end
-#     end
-
-#     context "when invalid params are passed" do
-#       before(:each) { post :create, { game: { user_throw: "pineapple" } } }
-#       it "responds with status code 422: Unprocessable Entity" do
-#         expect(response).to have_http_status 422
-#       end
-
-#       it "does not create a new game in the database" do
-#         expect{Game.all.count}.not_to change(Game, :count)
-#       end
-
-#       it "assigns the unsaved game as @game" do
-#         expect(assigns(:game)).to be_a_kind_of Game
-#       end
-
-#       it "renders the :new template" do
-#         expect(response).to have_rendered('games/new')
-#       end
-#     end
-#   end
+  
 
 #   describe "DELETE #destroy" do
 #     it "responds with status code 302" do
