@@ -6,4 +6,5 @@ class Pitch < ApplicationRecord
 	belongs_to :creator, class_name: :User
 	belongs_to :team
 
+	validates :creator, presence: true
 end
