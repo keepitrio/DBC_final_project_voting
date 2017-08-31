@@ -1,12 +1,24 @@
 class PitchesController < ApplicationController
+  include SessionsHelper
+  before_action :logged_in?
 
   def index
-    @pitches = Pitch.all
-    @round = Round.where(open:true)[0]
+    if logged_in?
+      @pitches = Pitch.all
+      @round = Round.where(open:true)[0]
+    else 
+      flash[:notice] = "You do not have access to this page."
+      redirect_to login_path
+    end
   end 
 
   def new
-    @pitch = Pitch.new
+    if logged_in?
+      @pitch = Pitch.new
+    else 
+      flash[:notice] = "You do not have access to this page."
+      redirect_to login_path
+    end 
   end 
 
   def create
@@ -20,7 +32,12 @@ class PitchesController < ApplicationController
   end
 
   def show
-    @pitch = Pitch.find(params[:id])
+    if logged_in?
+      @pitch = Pitch.find(params[:id])
+    else 
+      flash[:notice] = "You do not have access to this page."
+      redirect_to login_path
+    end 
   end
 
   private
