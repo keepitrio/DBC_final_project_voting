@@ -1,2 +1,8 @@
-<h1>Teams#show</h1>
-<p>Find me in app/views/teams/show.html.erb</p>
+<h1><%= @team.pitch.title %></h1>
+
+<i><%= @team.pitch.description %></i>
+<ul>
+  <% @team.students.each do |s| %>
+    <li><%= s.name %></li>
+  <% end %>
+</ul>
