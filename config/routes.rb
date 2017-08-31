@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#login'
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#logout'
+
+  post '/open_round_1' => 'pitches#open_round_1'
+  post '/open_round_2' => 'pitches#open_round_2'
   
   root to: 'sessions#login'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
