@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   include SessionsHelper
 
-  def show 
-    @user = User.find(params[:id])
+
+  def index
+    @pitches = Pitch.all
   end 
 
   def new 
