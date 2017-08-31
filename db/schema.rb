@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20170830182006) do
   create_table "pitches", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.integer "student_id"
+    t.integer "user_id"
     t.integer "team_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -33,12 +33,12 @@ ActiveRecord::Schema.define(version: 20170830182006) do
 
   create_table "rounds", force: :cascade do |t|
     t.integer "round_number"
+    t.boolean "open", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "teams", force: :cascade do |t|
-    t.string "name"
     t.bigint "pitch_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -58,8 +58,9 @@ ActiveRecord::Schema.define(version: 20170830182006) do
   end
 
   create_table "votes", force: :cascade do |t|
-    t.integer "voter_id"
-    t.integer "pitch_id"
+    t.integer "user_id", null: false
+    t.integer "pitch_id", null: false
+    t.integer "round_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

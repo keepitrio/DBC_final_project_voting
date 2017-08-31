@@ -1,1 +1,21 @@
-index.html.erb
+<h1>Final Project Pitches</h1>
+<% if @round %>
+	Round: <%= @round.round_number %><%= link_to "Vote for a pitch", new_round_vote_path(:round_id => @round.id) %>
+<% else %>
+	<%= link_to "New Pitch", new_pitch_path %>
+<% end %>
+
+<% if current_user.admin == true %>
+	<%= button_to 'Open round 1', open_round_1_path, method: :post %>
+	<%= button_to 'Open round 2', open_round_2_path, method: :post %>
+<% end %>
+
+<ul>
+  <% @pitches.each do |p| %>
+    <li><p><%= p.title %></p><%= link_to "Description", pitch_path(p) %></li>
+  <% end %>
+</ul>
+
+
+
+
