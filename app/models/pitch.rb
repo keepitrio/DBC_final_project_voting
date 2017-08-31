@@ -6,4 +6,5 @@ class Pitch < ApplicationRecord
 	belongs_to :student, class_name: :User, foreign_key: :user_id, optional: true
 	has_one :team
 
+	validates :creator, presence: true
 end
