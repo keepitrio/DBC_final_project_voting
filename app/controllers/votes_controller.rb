@@ -13,8 +13,8 @@ class VotesController < ApplicationController
 	def create
 		@vote = Vote.new
 		voted = []
-		params[:round_votes].each do |k,v|
-			voted << k if v == "1"
+		params[:round_votes].each do |pitch_id,voted|
+			voted << pitch_id if voted == "1"
 		end
 		voted.each do |pitch_id|
 			Vote.create(user_id: @current_user.id, pitch_id: pitch_id)
