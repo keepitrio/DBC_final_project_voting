@@ -1,10 +1,9 @@
 class VotesController < ApplicationController
 	def new
-		@round_1_pitches = Round.first.pitches
-		# @round_2_pitches = Round.second.pitches
+		@pitches = Round.where(open:true)[0].pitches
 	end
 
 	def create
-		
+
 	end
 end

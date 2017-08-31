@@ -2,7 +2,7 @@
 	<h1>Vote for your favorite pitch!</h1>
 
 	<%= form_for :votes do |f| %>
-		<% @round_1_pitches.each do |pitch| %>
+		<% @pitches.each do |pitch| %>
 			<%= f.check_box :checked %>
 			<%= pitch.title %><br>
 		<% end %>
