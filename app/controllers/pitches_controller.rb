@@ -2,6 +2,7 @@ class PitchesController < ApplicationController
 
   def index
     @pitches = Pitch.all
+    @round = Round.where(open:true)[0]
   end 
 
   def new
