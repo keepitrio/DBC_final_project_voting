@@ -49,6 +49,6 @@ Team.delete_all
   Team.create!(pitch_id: Pitch.first.id)
   Team.create!(pitch_id: Pitch.find(2).id)
 
-  User.first.update_attributes(team_id: Team.find(1))
+  User.first.update(team_id: Team.find(1))
 
-  User.find(2).update_attributes(team_id: Team.find(2))
+  User.find(2).update(team_id: Team.find(2))
