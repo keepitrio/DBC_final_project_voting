@@ -3,7 +3,7 @@ class CreatePitches < ActiveRecord::Migration[5.1]
     create_table :pitches do |t|
     	t.string :title
     	t.text :description
-    	t.integer :student_id
+    	t.integer :user_id
     	t.integer :team_id
 
       t.timestamps

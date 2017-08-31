@@ -16,7 +16,7 @@ require 'faker'
     Pitch.create!({
       :title      => Faker::Lorem.word ,
       :description  => Faker::Lorem.sentence,
-      :student_id => [2,3,4,5,6].sample
+      :user_id => [2,3,4,5,6].sample
     })
   end
 
@@ -32,9 +32,9 @@ require 'faker'
 
 
 
-  Vote.create!({:voter_id => 1, :pitch_id => 1})
-  Vote.create!({:voter_id => 2, :pitch_id => 2})
-  Vote.create!({:voter_id => 3, :pitch_id => 1})
-  Vote.create!({:voter_id => 4, :pitch_id => 2})
-  Vote.create!({:voter_id => 5, :pitch_id => 1})
+  Vote.create!({:user_id => 1, :pitch_id => 1})
+  Vote.create!({:user_id => 2, :pitch_id => 2})
+  Vote.create!({:user_id => 3, :pitch_id => 1})
+  Vote.create!({:user_id => 4, :pitch_id => 2})
+  Vote.create!({:user_id => 5, :pitch_id => 1})
 
