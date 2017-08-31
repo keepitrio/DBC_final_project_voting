@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20170830182006) do
 
   create_table "rounds", force: :cascade do |t|
     t.integer "round_number"
+    t.boolean "open", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
