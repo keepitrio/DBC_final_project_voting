@@ -1,0 +1,26 @@
+<h1> Pitches </h1>
+
+<dl>
+  <% @pitches.each do |pitch| %>
+    <dt> 
+      <strong> Title: </strong> 
+      <%= pitch.title %> </dt>
+    <dt> 
+      <strong> Description: </strong> 
+      <%= pitch.description %>
+    </dt>
+    <dt> 
+      <strong> Votes: </strong> 
+      <%= pitch.votes.count %> 
+    </dt> 
+    <dt> 
+      <strong> Voters: </strong> 
+      <% pitch.voters.each do |voter| %>
+        <%= voter.name %>
+      <% end %>
+    </dt>
+    <br>
+  <% end %>
+</dl>
+
+<%= link_to "Create teams", new_team_path %>
