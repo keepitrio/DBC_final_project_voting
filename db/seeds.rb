@@ -40,9 +40,9 @@ Team.delete_all
 
 
 
-  Vote.create!({:user_id => 1, :pitch_id => 1})
-  Vote.create!({:user_id => 2, :pitch_id => 2})
-  Vote.create!({:user_id => 3, :pitch_id => 1})
-  Vote.create!({:user_id => 4, :pitch_id => 2})
-  Vote.create!({:user_id => 5, :pitch_id => 1})
+  Vote.create!({:user_id => 1, :pitch_id => 1, :round_id => 1})
+  Vote.create!({:user_id => 2, :pitch_id => 2, :round_id => 1})
+  Vote.create!({:user_id => 3, :pitch_id => 1, :round_id => 1})
+  Vote.create!({:user_id => 4, :pitch_id => 2, :round_id => 2})
+  Vote.create!({:user_id => 5, :pitch_id => 1, :round_id => 2})
 
