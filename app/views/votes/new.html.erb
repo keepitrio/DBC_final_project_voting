@@ -10,12 +10,23 @@
 		<%= f.submit %>
 	<% end %>
 <% else %>
-	<%= form_for :round_votes do |f| %>
-		<% @pitches.each do |pitch| %>
-			<%= f.check_box pitch.id %>
-			<%= pitch.title %><br>
+	<% if @pitches.length < 4 %>
+		<%= form_for :round_votes do |f| %>
+			<% @pitches.each do |pitch| %>
+				<%= f.radio_button :contactmethod, pitch.id %>
+				<%= pitch.title %><br>
+			<% end %>
+			<br>
+			<%= f.submit %>
 		<% end %>
-		<br>
-		<%= f.submit %>
+	<% else %>
+		<%= form_for :round_votes do |f| %>
+			<% @pitches.each do |pitch| %>
+				<%= f.check_box pitch.id %>
+				<%= pitch.title %><br>
+			<% end %>
+			<br>
+			<%= f.submit %>
+		<% end %>
 	<% end %>
 <% end %>
