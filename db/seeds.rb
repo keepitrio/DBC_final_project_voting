@@ -32,12 +32,15 @@ Team.delete_all
 
   Round.create!({round_number: 1})
 
+  Round.create!({round_number: 2})
+  
   PitchRound.create!({round_id: 1, pitch_id: 1 })
   PitchRound.create!({round_id: 1, pitch_id: 2 })
   PitchRound.create!({round_id: 1, pitch_id: 3 })
   PitchRound.create!({round_id: 1, pitch_id: 4 })
   PitchRound.create!({round_id: 1, pitch_id: 5 })
 
+  Round.create!({round_number: 2})
 
 
   Vote.create!({:user_id => 1, :pitch_id => 1, :round_id => 1})

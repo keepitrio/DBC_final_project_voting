@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     if logged_in?
       if admin?
         @pitches = Pitch.all
+        @pitchrounds = PitchRound.all
       else 
         redirect_to pitches_path
       end 
