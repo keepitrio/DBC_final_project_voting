@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :pitches, only: [:index, :new, :create, :show]
   resources :teams, only: [:show, :index, :new, :create]
   resources :sessions, only: [:new, :create]
-  resources :rounds, only: [:index] do
+  resources :rounds, only: [:index, :show] do
     resources :votes, only: [:new, :create]
   end
 
