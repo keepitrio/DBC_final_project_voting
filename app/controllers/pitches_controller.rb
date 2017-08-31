@@ -23,7 +23,7 @@ class PitchesController < ApplicationController
 
   def create
     @pitch = Pitch.new(pitch_params)
-    @pitch.user_id = current_user.id
+    @pitch.user_id = @current_user.id
     if @pitch.save
       redirect_to pitches_path
     else
