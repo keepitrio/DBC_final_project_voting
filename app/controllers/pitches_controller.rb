@@ -1,5 +1,6 @@
 class PitchesController < ApplicationController
   include SessionsHelper
+  include PitchesHelper
 
   def index
     if logged_in?
@@ -22,7 +23,7 @@ class PitchesController < ApplicationController
 
   def create
     @pitch = Pitch.new(pitch_params)
-    @pitch.user_id = current_user.id
+    @pitch.user_id = @current_user.id
     if @pitch.save
       redirect_to pitches_path
     else
@@ -40,12 +41,12 @@ class PitchesController < ApplicationController
   end
 
   def open_round_1
-    open_round_1
+    open_round_1_button
     redirect_to pitches_path
   end
 
   def open_round_2
-    open_round_2
+    open_round_2_button
     redirect_to pitches_path
   end
 
