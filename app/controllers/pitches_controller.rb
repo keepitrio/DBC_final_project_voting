@@ -39,6 +39,16 @@ class PitchesController < ApplicationController
     end 
   end
 
+  def open_round_1
+    open_round_1
+    redirect_to pitches_path
+  end
+
+  def open_round_2
+    open_round_2
+    redirect_to pitches_path
+  end
+
   private
   def pitch_params
     params.require(:pitch).permit(:title, :description)
