@@ -18,9 +18,15 @@ class PitchesController < ApplicationController
     end
   end
 
+  def show
+    @pitch = Pitch.find(params[:id])
+  end
+
   private
   def pitch_params
     params.require(:pitch).permit(:title, :description)
   end
+
+
 end
 
