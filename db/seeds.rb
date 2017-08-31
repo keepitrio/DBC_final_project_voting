@@ -1,7 +1,40 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
+
+  user1 = User.create(name: Faker::Name.name, email: Faker::Internet.email, password: 'password', admin: true )
+
+  5.times do 
+    User.create!({
+      name: Faker::Name.name, 
+      email: Faker::Internet.email, 
+      password: 'password', 
+      admin: false
+    })
+  end 
+
+
+  5.times do
+    Pitch.create!({
+      :title      => Faker::Lorem.word ,
+      :description  => Faker::Lorem.sentence,
+      :student_id => [2,3,4,5,6].sample
+    })
+  end
+
+  pitches = Pitch.all
+
+  Round.create!({round_number: 1})
+
+  PitchRound.create!({round_id: 1, pitch_id: 1 })
+  PitchRound.create!({round_id: 1, pitch_id: 2 })
+  PitchRound.create!({round_id: 1, pitch_id: 3 })
+  PitchRound.create!({round_id: 1, pitch_id: 4 })
+  PitchRound.create!({round_id: 1, pitch_id: 5 })
+
+
+
+  Vote.create!({:voter_id => 1, :pitch_id => 1})
+  Vote.create!({:voter_id => 2, :pitch_id => 2})
+  Vote.create!({:voter_id => 3, :pitch_id => 1})
+  Vote.create!({:voter_id => 4, :pitch_id => 2})
+  Vote.create!({:voter_id => 5, :pitch_id => 1})
+
