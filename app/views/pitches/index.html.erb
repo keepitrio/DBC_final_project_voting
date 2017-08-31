@@ -8,6 +8,7 @@
 <% if current_user.admin == true %>
 	<%= button_to 'Open round 1', open_round_1_path, method: :post %>
 	<%= button_to 'Open round 2', open_round_2_path, method: :post %>
+	<%= button_to 'Close all rounds', close_round_path, method: :post %>
 <% end %>
 
 <ul>
