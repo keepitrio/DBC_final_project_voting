@@ -1,0 +1,9 @@
+<h1> Pitches </h1>
+
+<dl>
+  <% @pitches.each do |pitch| %>
+    <dt> Title: <%= pitch.title %> </dt>
+    <dt> Votes: <%= pitch.votes.count %> </dt>
+    <br>
+  <% end %>
+</dl>
