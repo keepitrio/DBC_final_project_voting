@@ -22,7 +22,7 @@ class TeamsController < ApplicationController
 
   def create
     if logged_in? && admin?
-      @team = Team.new(params[:team_details])
+      @team = Team.new(team_params)
       if @team.save
         redirect_to teams_path
       else
@@ -35,11 +35,18 @@ class TeamsController < ApplicationController
 
   def show
     if logged_in?
-      @team = Team.find(params[:id])
+      @team = Team.find(team_params)
       render 'show'
     else
       flash[:notice] = "You do not have access to this page."
       redirect_to login_path
     end
   end
+
+  private
+    def team_params
+      params.require(:team).permit(:id)
+    end
 end
+
+
