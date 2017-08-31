@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe PitchesController, type: :controller do
-  let!(:student) { Pitch.create!(title: "Costpers", description: "Find the value of your purchase") }
-  let!(:team) { Pitch.create!(title: "Costpers", description: "Find the value of your purchase") }
-  let!(:pitch) { Pitch.create!(title: "Costpers", description: "Find the value of your purchase") }
+  let!(:student) { Pitch.create!(title: "Costpers", description: "Find the value of your purchase", user_id: 1) }
+  let!(:team) { Pitch.create!(title: "Costpers", description: "Find the value of your purchase", user_id: 1) }
+  let!(:pitch) { Pitch.create!(title: "Costpers", description: "Find the value of your purchase", user_id: 1) }
 
   describe "GET #index" do 
     before(:each) { get :index }
