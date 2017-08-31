@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     if logged_in?
       if admin?
         @pitches = Pitch.all
+        @pitchrounds = PitchRound.all
       else 
         redirect_to pitches_path
       end 
@@ -26,12 +27,6 @@ class UsersController < ApplicationController
     else 
       render 'new'
     end
-  end 
-
-  def destroy
-    logout 
-    @user.destroy
-    redirect_to_user_path
   end 
 
   private
