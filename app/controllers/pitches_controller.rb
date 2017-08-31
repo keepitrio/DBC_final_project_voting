@@ -23,4 +23,4 @@ class PitchesController < ApplicationController
     params.require(:pitch).permit(:title, :description)
   end
 end
-end
+
