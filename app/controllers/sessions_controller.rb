@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:session][:email])
 
     if @user && @user.authenticate(params[:session][:password])
-      session[:id] = @user.id
+      session[:user_id] = @user.id
       redirect_to pitches_path
     else
       @errors = ['email or password is incorrect']
@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
   end
 
   def logout
-    session[:id] = nil
+    session[:user_id] = nil
     redirect_to '/'
   end
   
