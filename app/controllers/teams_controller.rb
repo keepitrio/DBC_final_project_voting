@@ -10,6 +10,7 @@ class TeamsController < ApplicationController
   end
 
   def new
+    @team = Team.new
     if logged_in? && admin?
     else 
       flash[:notice] = "You do not have access to this page."
