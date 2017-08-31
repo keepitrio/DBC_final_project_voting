@@ -10,7 +10,7 @@ Team.delete_all
 
   user1 = User.create(name: Faker::Name.name, email: Faker::Internet.email, password: 'password', admin: true )
 
-  5.times do
+  20.times do
     User.create!({
       name: Faker::Name.name,
       email: Faker::Internet.email,
@@ -20,7 +20,7 @@ Team.delete_all
   end
 
 
-  5.times do
+  10.times do
     Pitch.create!({
       :title      => Faker::Lorem.word ,
       :description  => Faker::Lorem.sentence,
@@ -46,3 +46,9 @@ Team.delete_all
   Vote.create!({:user_id => 4, :pitch_id => 2, :round_id => 2})
   Vote.create!({:user_id => 5, :pitch_id => 1, :round_id => 2})
 
+  Team.create!(pitch_id: Pitch.first.id)
+  Team.create!(pitch_id: Pitch.find(2).id)
+
+  User.first.update(team_id: Team.find(1))
+
+  User.find(2).update(team_id: Team.find(2))

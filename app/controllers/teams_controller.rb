@@ -2,7 +2,9 @@ class TeamsController < ApplicationController
   include SessionsHelper
 
   def index
-    if logged_in 
+    if logged_in?
+      @teams = Team.all
+      render 'index'
     else 
       flash[:notice] = "You do not have access to this page."
       redirect_to login_path
@@ -28,6 +30,8 @@ class TeamsController < ApplicationController
 
   def show
     if logged_in? 
+      @team = Team.find(params[:id])
+      render 'show'
     else 
       flash[:notice] = "You do not have access to this page."
       redirect_to login_path
