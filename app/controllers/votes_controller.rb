@@ -1,4 +1,5 @@
 class VotesController < ApplicationController
+	include SessionsHelper
 	def new
 		if logged_in?
 			@vote = Vote.new

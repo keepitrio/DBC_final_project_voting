@@ -1,6 +1,5 @@
 class PitchesController < ApplicationController
   include SessionsHelper
-  before_action :logged_in?
 
   def index
     if logged_in?

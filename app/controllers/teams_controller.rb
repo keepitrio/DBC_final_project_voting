@@ -1,4 +1,5 @@
 class TeamsController < ApplicationController
+  include SessionsHelper
   def index
     if logged_in?
     else 
