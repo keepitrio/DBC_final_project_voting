@@ -9,7 +9,11 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
-      redirect_to pitches_path
+      if logged_in? && admin?
+        redirect_to users_path
+      else 
+        redirect_to pitches_path
+      end
     else
       @errors = ['email or password is incorrect']
       render 'login'

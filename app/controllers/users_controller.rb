@@ -1,8 +1,16 @@
 class UsersController < ApplicationController
   include SessionsHelper
 
-  def show 
-    @user = User.find(params[:id])
+  def index
+    if logged_in?
+      if admin?
+        @pitches = Pitch.all
+      else 
+        redirect_to pitches_path
+      end 
+    else 
+      redirect_to login_path
+    end 
   end 
 
   def new 
@@ -13,7 +21,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.password = params[:user][:password]
     if @user.save
-      session[:user_id] = @user.id
       redirect_to pitches_path
     else 
       render 'new'
