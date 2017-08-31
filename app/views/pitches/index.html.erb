@@ -1,1 +1,10 @@
-index.html.erb
+<h1>Final Project Pitches</h1>
+
+<ul>
+  <% @pitches.each do |p| %>
+    <li><p><%= p.title %></p><%= link_to "Description", pitch_path(p) %></li>
+  <% end %>
+</ul>
+
+<%= link_to "New Pitch", new_pitch_path %>
+
