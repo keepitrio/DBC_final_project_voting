@@ -8,8 +8,8 @@ module SessionsHelper
     !!current_user
   end
 
-  def login
-    session[:user_id] = @user.id
+  def give_permission(user)
+    session[:user_id] = user.id
   end
 
   def logout

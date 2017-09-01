@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:session][:email])
 
     if @user && @user.authenticate(params[:session][:password])
-      login
+      give_permission(@user)
       if logged_in? && admin?
         redirect_to users_path
       else 
