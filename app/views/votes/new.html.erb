@@ -1,7 +1,14 @@
 <h1>Vote for your favorite pitch!</h1>
 
-<% if @open_round.round_number == 1 %>
-	<%= render @pitches %>
+<% if @open_round.round_number == 1 || 2 %>
+	<%= form_for :round_votes do |f| %>
+		<% @pitches.each do |pitch| %>
+			<%= f.check_box pitch.id %>
+			<%= pitch.title %><br>
+		<% end %>
+		<br>
+		<%= f.submit %>
+	<% end %>
 <% else %>
 	<% if @pitches.length < 4 %>
 		<%= form_for :round_votes do |f| %>
