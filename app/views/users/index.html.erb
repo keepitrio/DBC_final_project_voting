@@ -19,6 +19,13 @@
         <%= voter.name %>
       <% end %>
     </dt>
+    <% pitch.pitch_rounds.each do |pitch_round| %>
+      <% if pitch_round.round_id == 1 %>
+        <%= button_to 'Move on to Round 2', move_to_round_2_path, method: :post, pitch_id: pitch_round.pitch_id %>
+      <% else %>
+        <p> On to Round 2 </p>
+      <% end %>
+    <% end %>
     <br>
   <% end %>
 </dl>
