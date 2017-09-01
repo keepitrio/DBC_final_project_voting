@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 20170830182006) do
     t.string "name"
     t.string "email"
     t.string "password_digest"
-    t.string "student_preference"
     t.bigint "team_id"
     t.boolean "admin"
     t.datetime "created_at", null: false
