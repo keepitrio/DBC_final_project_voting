@@ -23,8 +23,8 @@ class PitchesController < ApplicationController
 
   def create
     @pitch = Pitch.new(pitch_params)
-    @pitch.user_id = @current_user.id
     if @pitch.save
+      @pitch.user_id = @current_user.id
       redirect_to pitches_path
     else
       render :new, status: 422
