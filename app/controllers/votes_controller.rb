@@ -2,7 +2,6 @@ class VotesController < ApplicationController
 	include SessionsHelper
 	def new
 		if logged_in?
-			@vote = Vote.new
 			@open_round = Round.where(open:true)[0]
 			if @open_round
 				@pitches = @open_round.pitches
@@ -17,19 +16,14 @@ class VotesController < ApplicationController
 	end
 
 	def create
-		@round = Round.find(params[:id])
-		@vote = Vote.new
-		voted = []
-
-		params[:round_votes].each do |pitch_id,voted|
-			voted << pitch_id if voted == "1"
-		end
+		@round = Round.find(params[:round_id])
+		voted = params[:pitches]
 
 		voted.each do |pitch_id|
-			Vote.create(user_id: current_user.id, pitch_id: pitch_id, round_id: @round.id)
+			Vote.create!(user_id: current_user.id, pitch_id: pitch_id, round_id: @round.id)
 		end
 		
 		flash[:notice] = "Thanks for voting!"
-		redirect_to @pitch
+		redirect_to pitches_path
 	end
 end
