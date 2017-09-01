@@ -6,6 +6,7 @@ class PitchesController < ApplicationController
     if logged_in?
       @pitches = Pitch.all
       @round = Round.where(open:true)[0]
+      render 'index'
     else 
       flash[:notice] = "You do not have access to this page."
       redirect_to login_path
