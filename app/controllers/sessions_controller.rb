@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:session][:email])
 
     if @user && @user.authenticate(params[:session][:password])
-      session[:user_id] = @user.id
+      login
       if logged_in? && admin?
         redirect_to users_path
       else 
@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
   end
 
   def logout
-    session[:user_id] = nil
+    logout
     redirect_to '/'
   end
   

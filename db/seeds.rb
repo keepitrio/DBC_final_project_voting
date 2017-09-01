@@ -31,7 +31,6 @@ Team.delete_all
   pitches = Pitch.all
 
   Round.create!({round_number: 1})
-
   Round.create!({round_number: 2})
   
   PitchRound.create!({round_id: 1, pitch_id: 1 })

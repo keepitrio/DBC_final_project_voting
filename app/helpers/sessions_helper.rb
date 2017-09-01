@@ -8,6 +8,10 @@ module SessionsHelper
     !!current_user
   end
 
+  def login
+    session[:user_id] = @user.id
+  end
+
   def logout
     session[:user_id] = nil
   end
