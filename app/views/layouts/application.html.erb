@@ -6,11 +6,11 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-  <% if session[:user_id] != nil %>
+  <% if logged_in? %>
     <% @user = User.find_by(id: session[:user_id]) %>
     <%= link_to 'pitches', pitches_path %>
     | <%= link_to 'logout', logout_path, method: :delete %>
-    <% if @current_user.admin === true %>
+    <% if admin? %>
       | <%= link_to 'create teams', users_path%>
     <% end %>
     <% else %>
