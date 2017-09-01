@@ -13,7 +13,7 @@
     <% if admin? %>
       | <%= link_to 'create teams', users_path%>
     <% end %>
-    <% else %>
+  <% elsif session[:user_id] == nil %>
     <%= link_to 'login', login_path %>
     | <%= link_to 'register', new_user_path %>
   <% end  %>

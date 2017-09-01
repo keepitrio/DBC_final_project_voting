@@ -26,7 +26,7 @@ class VotesController < ApplicationController
 		end
 
 		voted.each do |pitch_id|
-			Vote.create(user_id: @current_user.id, pitch_id: pitch_id, round_id: @round.id)
+			Vote.create(user_id: current_user.id, pitch_id: pitch_id, round_id: @round.id)
 		end
 		
 		flash[:notice] = "Thanks for voting!"

@@ -16,12 +16,13 @@ class SessionsController < ApplicationController
       end
     else
       @errors = ['email or password is incorrect']
+      p "you cant log in."
       render 'login'
     end
   end
 
   def logout
-    logout
+    session[:user_id] = nil
     redirect_to '/'
   end
   
