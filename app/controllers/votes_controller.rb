@@ -24,6 +24,6 @@ class VotesController < ApplicationController
 		end
 		
 		flash[:notice] = "Thanks for voting!"
-		redirect_to pitches_path
+		render js: "window.location = #{pitches_path}"
 	end
 end

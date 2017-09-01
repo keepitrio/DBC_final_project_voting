@@ -5,18 +5,21 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <%= javascript_include_tag 'application' %>
-  <% if logged_in? %>
-    <% @user = User.find_by(id: session[:user_id]) %>
-    <%= link_to 'pitches', pitches_path %>
-    | <%= link_to 'logout', logout_path, method: :delete %>
-    <% if admin? %>
-      | <%= link_to 'create teams', users_path%>
-    <% end %>
-  <% elsif session[:user_id] == nil %>
-    <%= link_to 'login', login_path %>
-    | <%= link_to 'register', new_user_path %>
-  <% end  %>
+    <div class="nav">
+      <% if logged_in? %>
+        <% @user = User.find_by(id: session[:user_id]) %>
+        <%= link_to 'pitches', pitches_path %>
+        | <%= link_to 'logout', logout_path, method: :delete %>
+        <% if admin? %>
+          | <%= link_to 'create teams', users_path%>
+        <% end %>
+      <% elsif session[:user_id] == nil %>
+        <%= link_to 'login', login_path %>
+        | <%= link_to 'register', new_user_path %>
+      <% end  %>
+    </div>
   </head>
 
   <body>
