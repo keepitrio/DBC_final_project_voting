@@ -50,6 +50,11 @@ class PitchesController < ApplicationController
     redirect_to pitches_path
   end
 
+  def close_round
+    close_rounds_button
+    redirect_to pitches_path
+  end
+
   private
   def pitch_params
     params.require(:pitch).permit(:title, :description)

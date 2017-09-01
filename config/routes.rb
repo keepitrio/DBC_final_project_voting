@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   post '/open_round_1' => 'pitches#open_round_1'
   post '/open_round_2' => 'pitches#open_round_2'
+  post '/close_round' => 'pitches#close_round'
 
   post '/move_to_round_2' => 'pitch_rounds#move_to_round_2'
   
