@@ -1,3 +1,21 @@
 // Place all the styles related to the Teams controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+header, section {
+      display: block;
+    }
+    body {
+      font-family: 'Droid Serif';
+    }
+
+
+    div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 350px;
+    height: auto;
+    padding: 10px;
+    border: 1px solid #aaaaaa;
+}

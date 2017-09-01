@@ -23,8 +23,9 @@ class PitchesController < ApplicationController
 
   def create
     @pitch = Pitch.new(pitch_params)
-    @pitch.user_id = @current_user.id
+    @pitch.user_id = current_user.id
     if @pitch.save
+      @pitch.user_id = @current_user.id
       redirect_to pitches_path
     else
       render :new, status: 422
@@ -47,6 +48,11 @@ class PitchesController < ApplicationController
 
   def open_round_2
     open_round_2_button
+    redirect_to pitches_path
+  end
+
+  def close_round
+    close_rounds_button
     redirect_to pitches_path
   end
 

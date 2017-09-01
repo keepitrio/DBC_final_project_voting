@@ -6,12 +6,14 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-  <% if session[:user_id] != nil %>
+  <% if logged_in? %>
     <% @user = User.find_by(id: session[:user_id]) %>
-    <%= link_to 'home', pitches_path %>
+    <%= link_to 'pitches', pitches_path %>
     | <%= link_to 'logout', logout_path, method: :delete %>
-    | <%= link_to 'admin', users_path%>
-    <% else %>
+    <% if admin? %>
+      | <%= link_to 'create teams', users_path%>
+    <% end %>
+  <% elsif session[:user_id] == nil %>
     <%= link_to 'login', login_path %>
     | <%= link_to 'register', new_user_path %>
   <% end  %>
