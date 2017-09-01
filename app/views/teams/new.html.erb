@@ -1,25 +1,37 @@
 
-<h1>Teams</h1>
-<p>Find me in app/views/teams/new.html.erb</p>
+<h1>Pitches</h1>
 
+<strong><%= @pitch_rounds[0].pitch.title %> </strong>
+<%= form_for :teams do |f| %>
+  <% @users.each do |user| %>
+        <%= f.check_box user.id %>
+        <%= user.name %><br>
+      <% end %>
+      <%= f.hidden_field :pitch_id, :value => @pitch_rounds[0].pitch.id %>
+    <%= f.submit %>
 
+<% end %>
 
-
-<h2>Pitch 1</h2>
-<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-
-<h2>Pitch 2</h2>
-<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-
-<h2>Pitch 3</h2>
-<div id="div3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 <br>
 
-<li id="drag5" draggable="true" ondragstart="drag(event)">student 1</li>
+<strong><%= @pitch_rounds[1].pitch.title %> </strong>
+<%= form_for :teams do |f| %>
+  <% @users.each do |user| %>
+        <%= f.check_box user.id %>
+        <%= user.name %><br>
+      <% end %>
+      <%= f.hidden_field :pitch_id, :value => @pitch_rounds[1].pitch.id %>
+    <%= f.submit %>
+<% end %>
 
-<li id="drag6" draggable="true" ondragstart="drag(event)">student 2</li>
+<br>
 
-<li id="drag7" draggable="true" ondragstart="drag(event)">student 3</li>
-
-<li id="drag8" draggable="true" ondragstart="drag(event)">student 4</li>
-
+<strong><%= @pitch_rounds[2].pitch.title %></strong>
+<%= form_for :teams do |f| %>
+  <% @users.each do |user| %>
+        <%= f.check_box user.id %>
+        <%= user.name %><br>
+      <% end %>
+      <%= f.hidden_field :pitch_id, :value => @pitch_rounds[2].pitch.id %>
+    <%= f.submit %>
+<% end %>
