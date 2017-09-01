@@ -1,5 +1,5 @@
 <h1>Final Project Pitches</h1>
-<% if @round %>
+<% if @round && !voted?(@round) %>
 	Round: <%= @round.round_number %><%= link_to "Vote for a pitch", new_round_vote_path(:round_id => @round.id) %>
 <% else %>
 	<%= link_to "New Pitch", new_pitch_path %>
