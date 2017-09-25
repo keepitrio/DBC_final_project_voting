@@ -5,6 +5,7 @@ class CreatePitches < ActiveRecord::Migration[5.1]
     	t.text :description
     	t.integer :user_id
     	t.integer :team_id
+      t.integer :round_id
 
       t.timestamps
     end

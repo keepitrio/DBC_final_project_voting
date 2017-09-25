@@ -4,7 +4,6 @@ User.delete_all
 Vote.delete_all
 Pitch.delete_all
 Round.delete_all
-PitchRound.delete_all
 Team.delete_all
 
 
@@ -19,34 +18,43 @@ Team.delete_all
     })
   end
 
+  Round.create!({
+    open: false
+    })
+
   Pitch.create!({
       :title      => "Our Trip" ,
       :description  => "A mobile app that allows friends to collaborate on planning a trip",
-      :user_id => [2,3,4,5,6].sample
+      :user_id => [2,3,4,5,6].sample,
+      :round_id => 1
     })
 
   Pitch.create!({
       :title      => "Voting System" ,
       :description  => "A web app that allows students to vote on ideas and for teachers to form teams based on the ideas.",
-      :user_id => [2,3,4,5,6].sample
+      :user_id => [2,3,4,5,6].sample,
+      :round_id => 1
     })
 
   Pitch.create!({
       :title      => "Forms" ,
       :description  => "A mobile app that allows dances to block out formations.",
-      :user_id => [2,3,4,5,6].sample
+      :user_id => [2,3,4,5,6].sample,
+      :round_id => 1
     })
 
   Pitch.create!({
       :title      => "Translator" ,
       :description  => "A mobile app that translates every line in a book to a language of your choice.",
-      :user_id => [2,3,4,5,6].sample
+      :user_id => [2,3,4,5,6].sample,
+      :round_id => 1
     })
 
   Pitch.create!({
       :title      => "Spotifly" ,
       :description  => "A mobile app that is able to identify every flying insect.",
-      :user_id => [2,3,4,5,6].sample
+      :user_id => [2,3,4,5,6].sample,
+      :round_id => 1
     })
 
   pitches = Pitch.all
