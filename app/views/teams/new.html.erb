@@ -1,37 +1,43 @@
+<div class = "container-fluid">
+  <h1>Pitches</h1>
 
-<h1>Pitches</h1>
+  <ul class="list-inline">
+  <li>
+    <strong><%= @pitch_rounds[0].pitch.title %> </strong>
+    <%= form_for :teams do |f| %>
+      <% @users.each do |user| %>
+            <%= f.check_box user.id %>
+            <%= user.name %><br>
+          <% end %>
+          <%= f.hidden_field :pitch_id, :value => @pitch_rounds[0].pitch.id %>
+        <%= f.submit %>
 
-<strong><%= @pitch_rounds[0].pitch.title %> </strong>
-<%= form_for :teams do |f| %>
-  <% @users.each do |user| %>
-        <%= f.check_box user.id %>
-        <%= user.name %><br>
-      <% end %>
-      <%= f.hidden_field :pitch_id, :value => @pitch_rounds[0].pitch.id %>
-    <%= f.submit %>
+    <% end %>
 
-<% end %>
+  </li>
 
-<br>
+  <li>
+    <strong><%= @pitch_rounds[1].pitch.title %> </strong>
+    <%= form_for :teams do |f| %>
+      <% @users.each do |user| %>
+            <%= f.check_box user.id %>
+            <%= user.name %><br>
+          <% end %>
+          <%= f.hidden_field :pitch_id, :value => @pitch_rounds[1].pitch.id %>
+        <%= f.submit %>
+    <% end %>
 
-<strong><%= @pitch_rounds[1].pitch.title %> </strong>
-<%= form_for :teams do |f| %>
-  <% @users.each do |user| %>
-        <%= f.check_box user.id %>
-        <%= user.name %><br>
-      <% end %>
-      <%= f.hidden_field :pitch_id, :value => @pitch_rounds[1].pitch.id %>
-    <%= f.submit %>
-<% end %>
+  </li>
 
-<br>
-
-<strong><%= @pitch_rounds[2].pitch.title %></strong>
-<%= form_for :teams do |f| %>
-  <% @users.each do |user| %>
-        <%= f.check_box user.id %>
-        <%= user.name %><br>
-      <% end %>
-      <%= f.hidden_field :pitch_id, :value => @pitch_rounds[2].pitch.id %>
-    <%= f.submit %>
-<% end %>
+  <li>
+    <strong><%= @pitch_rounds[2].pitch.title %></strong>
+    <%= form_for :teams do |f| %>
+      <% @users.each do |user| %>
+            <%= f.check_box user.id %>
+            <%= user.name %><br>
+          <% end %>
+          <%= f.hidden_field :pitch_id, :value => @pitch_rounds[2].pitch.id %>
+        <%= f.submit %>
+    <% end %>
+  </li>
+</div>
