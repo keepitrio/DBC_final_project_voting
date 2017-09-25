@@ -6,7 +6,6 @@ class UsersController < ApplicationController
       if admin?
         @round = Round.find_by(open: true)
         @pitches = Pitch.all
-        @pitchrounds = PitchRound.all
       else 
         redirect_to pitches_path
       end 

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#logout'
 
+  post '/create_round' => 'rounds#create_round'
   post '/open_round' => 'rounds#open_round'
   post '/close_round' => 'rounds#close_round'
   post '/move_to_round_2' => 'pitch_rounds#move_to_round_2'
