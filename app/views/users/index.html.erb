@@ -1,34 +1,41 @@
-<h1> Pitches </h1>
+<div class = "container-fluid">
+  <h1> Pitches </h1>
 
-<dl>
-  <% @pitches.each do |pitch| %>
-    <dt> 
-      <strong> Title: </strong> 
-      <%= pitch.title %> </dt>
-    <dt> 
-      <strong> Description: </strong> 
-      <%= pitch.description %>
-    </dt>
-    <dt> 
-      <strong> Votes: </strong> 
-      <%= pitch.votes.count %> 
-    </dt> 
-    <dt> 
-      <strong> Voters: </strong> 
-      <% pitch.voters.each do |voter| %>
-        <%= voter.name %>
+  <button type="button" class="btn btn-default">
+    <%= link_to "Create teams", new_team_path %>
+  </button>
+  <button type="button" class="btn btn-default">
+    <%= link_to "Turn on rounds", pitches_path %>
+  </button>
+  <br><br>
+
+  <ul class="list-group">
+    <% @pitches.each do |pitch| %>
+      <li class="list-group-item">
+        <strong>Title:</strong>
+          <p> <%= pitch.title %> </p>
+        <strong> Description: </strong> 
+          <p><%= pitch.description %></p>
+        <strong> Votes: </strong> 
+          <p><%= pitch.votes.count %></p>
+        <strong> Voters:</strong>
+        <p>
+          <% pitch.voters.each do |voter| %>
+            <%= voter.name %> |
+          <% end %>
+        </p>
+      <p>  
+      <% pitch.pitch_rounds.each do |pitch_round| %>
+        <% if pitch_round.round_id == 1 %>
+          <div class="form-group">
+            <%= button_to 'Move on to Round 2', move_to_round_2_path, method: :post, pitch_id: pitch_round.pitch_id, class: "btn btn-default"%>
+          </div>
+        <% else %>
+          <p><i> On to Round 2 </i></p>
+        <% end %>
       <% end %>
-    </dt>
-    <% pitch.pitch_rounds.each do |pitch_round| %>
-      <% if pitch_round.round_id == 1 %>
-        <%= button_to 'Move on to Round 2', move_to_round_2_path, method: :post, pitch_id: pitch_round.pitch_id %>
-      <% else %>
-        <p> On to Round 2 </p>
-      <% end %>
+      </p>
     <% end %>
-    <br>
-  <% end %>
-</dl>
+  </dl>
 
-<%= link_to "Create teams", new_team_path %>
-<%= link_to "Turn on rounds", pitches_path %>
+</div>

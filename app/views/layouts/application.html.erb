@@ -18,7 +18,7 @@
             <li> <%= link_to 'pitches', pitches_path %> </li>
             <li> <%= link_to 'logout', logout_path, method: :delete %> </li>
             <% if admin? %>
-              <li> | <%= link_to 'create teams', users_path%> </li>
+              <li> <%= link_to 'create teams', users_path%> </li>
             <% end %>
           <% elsif session[:user_id] == nil %>
             <li> <%= link_to 'login', login_path %> </li>
