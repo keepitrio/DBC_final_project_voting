@@ -4,23 +4,29 @@
     <title>DBCFinalProjectVoting</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <%= javascript_include_tag 'application' %>
-    <div class="nav">
-      <% if logged_in? %>
-        <% @user = User.find_by(id: session[:user_id]) %>
-        <%= link_to 'pitches', pitches_path %>
-        | <%= link_to 'logout', logout_path, method: :delete %>
-        <% if admin? %>
-          | <%= link_to 'create teams', users_path%>
-        <% end %>
-      <% elsif session[:user_id] == nil %>
-        <%= link_to 'login', login_path %>
-        | <%= link_to 'register', new_user_path %>
-      <% end  %>
-    </div>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand">Dev Bootcamp Final Project Voting</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <% if logged_in? %>
+            <% @user = User.find_by(id: session[:user_id]) %>
+            <li> <%= link_to 'pitches', pitches_path %> </li>
+            <li> <%= link_to 'logout', logout_path, method: :delete %> </li>
+            <% if admin? %>
+              <li> | <%= link_to 'create teams', users_path%> </li>
+            <% end %>
+          <% elsif session[:user_id] == nil %>
+            <li> <%= link_to 'login', login_path %> </li>
+            <li> <%= link_to 'register', new_user_path %> </li>
+          <% end  %>
+        </ul>
+    </div>
+  </nav>
 
   <body>
     <%= yield %>
