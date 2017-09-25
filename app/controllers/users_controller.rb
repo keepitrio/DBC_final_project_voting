@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def index
     if logged_in?
       if admin?
+        @round = Round.find_by(open: true)
         @pitches = Pitch.all
         @pitchrounds = PitchRound.all
       else 

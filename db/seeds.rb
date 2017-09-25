@@ -10,7 +10,7 @@ Team.delete_all
 
   user1 = User.create(name: Faker::Name.name, email: Faker::Internet.email, password: 'password', admin: true )
 
-  20.times do
+  15.times do
     User.create!({
       name: Faker::Name.name,
       email: Faker::Internet.email,
@@ -19,35 +19,35 @@ Team.delete_all
     })
   end
 
-
-  10.times do
-    Pitch.create!({
-      :title      => Faker::Lorem.word ,
-      :description  => Faker::Lorem.sentence,
+  Pitch.create!({
+      :title      => "Our Trip" ,
+      :description  => "A mobile app that allows friends to collaborate on planning a trip",
       :user_id => [2,3,4,5,6].sample
     })
-  end
+
+  Pitch.create!({
+      :title      => "Voting System" ,
+      :description  => "A web app that allows students to vote on ideas and for teachers to form teams based on the ideas.",
+      :user_id => [2,3,4,5,6].sample
+    })
+
+  Pitch.create!({
+      :title      => "Forms" ,
+      :description  => "A mobile app that allows dances to block out formations.",
+      :user_id => [2,3,4,5,6].sample
+    })
+
+  Pitch.create!({
+      :title      => "Translator" ,
+      :description  => "A mobile app that translates every line in a book to a language of your choice.",
+      :user_id => [2,3,4,5,6].sample
+    })
+
+  Pitch.create!({
+      :title      => "Spotifly" ,
+      :description  => "A mobile app that is able to identify every flying insect.",
+      :user_id => [2,3,4,5,6].sample
+    })
 
   pitches = Pitch.all
 
-  Round.create!({round_number: 1})
-  Round.create!({round_number: 2})
-  
-  PitchRound.create!({round_id: 1, pitch_id: 1 })
-  PitchRound.create!({round_id: 1, pitch_id: 2 })
-  PitchRound.create!({round_id: 1, pitch_id: 3 })
-  PitchRound.create!({round_id: 2, pitch_id: 4 })
-  PitchRound.create!({round_id: 2, pitch_id: 5 })
-
-  Vote.create!({:user_id => 1, :pitch_id => 1, :round_id => 1})
-  Vote.create!({:user_id => 2, :pitch_id => 2, :round_id => 1})
-  Vote.create!({:user_id => 3, :pitch_id => 1, :round_id => 1})
-  Vote.create!({:user_id => 4, :pitch_id => 2, :round_id => 2})
-  Vote.create!({:user_id => 5, :pitch_id => 1, :round_id => 2})
-
-  Team.create!(pitch_id: Pitch.first.id)
-  Team.create!(pitch_id: Pitch.find(2).id)
-
-  User.first.update(team_id: Team.find(1))
-
-  User.find(2).update(team_id: Team.find(2))

@@ -11,10 +11,8 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#logout'
 
-  post '/open_round_1' => 'pitches#open_round_1'
-  post '/open_round_2' => 'pitches#open_round_2'
-  post '/close_round' => 'pitches#close_round'
-
+  post '/open_round' => 'rounds#open_round'
+  post '/close_round' => 'rounds#close_round'
   post '/move_to_round_2' => 'pitch_rounds#move_to_round_2'
   
   root to: 'sessions#login'

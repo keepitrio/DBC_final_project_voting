@@ -4,9 +4,15 @@
   <button type="button" class="btn btn-default">
     <%= link_to "Create teams", new_team_path %>
   </button>
-  <button type="button" class="btn btn-default">
-    <%= link_to "Turn on rounds", pitches_path %>
-  </button>
+  <% if @round == nil  %>
+    <button type="button" class="btn btn-default">
+      <%= link_to 'Open round', open_round_path, method: :post %>
+    </button>
+  <% else %>
+    <button type="button" class="btn btn-default">
+      <%= link_to 'Close round', close_round_path, method: :post %>
+    </button>
+  <% end %>
   <br><br>
 
   <ul class="list-group">
