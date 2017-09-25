@@ -2,16 +2,18 @@
   <h1>Final Project Pitches</h1>
   <% if @round && !voted?(@round) %>
   	Round <%= @round.round_number %>: <%= link_to "Vote for a pitch", new_round_vote_path(:round_id => @round.id) %>
-  <% else %>
+  <% elsif !admin? %>
   	  <button type="button" class="btn btn-default">
         <%= link_to "New Pitch", new_pitch_path %>
       </button>
   <% end %>
       <br><br>
   <% if logged_in? && admin? %>
-  	<%= button_to 'Open round 1', open_round_1_path, method: :post %>
-  	<%= button_to 'Open round 2', open_round_2_path, method: :post %>
-  	<%= button_to 'Close all rounds', close_round_path, method: :post %>
+    <ul class="list-inline">
+    	<li><%= button_to 'Open round 1', open_round_1_path, method: :post, class: "btn btn-default" %></li>
+    	<li><%= button_to 'Open round 2', open_round_2_path, method: :post, class: "btn btn-default" %></li>
+    	<li><%= button_to 'Close all rounds', close_round_path, method: :post, class: "btn btn-default" %></li>
+    </ul>
   <% end %>
 
   <ul class="list-group">
