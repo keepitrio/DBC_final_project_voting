@@ -2,7 +2,7 @@ class VotesController < ApplicationController
 	include SessionsHelper
 	def new
 		if logged_in?
-			@open_round = Round.where(open:true)[0]
+			@open_round = Round.find_by(open:true)
 			if @open_round
 				@pitches = @open_round.pitches
 			else
