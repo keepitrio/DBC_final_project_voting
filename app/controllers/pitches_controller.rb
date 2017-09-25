@@ -32,15 +32,6 @@ class PitchesController < ApplicationController
     end
   end
 
-  def show
-    if logged_in?
-      @pitch = Pitch.find(params[:id])
-    else 
-      flash[:notice] = "You do not have access to this page."
-      redirect_to login_path
-    end 
-  end
-
   def open_round_1
     open_round_1_button
     redirect_to pitches_path
