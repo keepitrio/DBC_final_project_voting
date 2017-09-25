@@ -5,6 +5,7 @@ class PitchesController < ApplicationController
   def index
     if logged_in?
       @pitches = Pitch.all
+      @round = Round.find_by(open:true)
     else 
       redirect_to login_path
     end
