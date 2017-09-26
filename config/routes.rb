@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post '/create_round' => 'rounds#create_round'
   post '/open_round' => 'rounds#open_round'
   post '/close_round' => 'rounds#close_round'
+  post '/begin_selection' => 'rounds#begin_selection'
   post '/move_to_next_round' => 'pitches#move_to_next_round'
   
   root to: 'sessions#login'

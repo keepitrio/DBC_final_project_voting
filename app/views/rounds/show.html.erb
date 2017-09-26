@@ -1,25 +1,12 @@
 <div class = "container-fluid">
-  <h1> Pitches </h1>
 
-  <% if @recent_round.votes.count != 0 && @recent_round.open != true %>
+    <h1> Pitches </h1>
+  <% if @round.votes.count != 0 && @round.open != true && @new_round.votes.count != 0 %>
     <button type="button" class="btn btn-default">
-      <%= link_to "Select Pitches", create_round_path, method: :post %>
+      <%= link_to "Begin Selection", create_round_path, method: :post %>
     </button>
+    <p> Click here to begin the selection process.</p>
   <% end %>
-  <button type="button" class="btn btn-default">
-    <%= link_to "Create Teams", new_team_path %>
-  </button>
-  <% if @open_round == nil  %>
-    <button type="button" class="btn btn-default">
-      <%= link_to 'Open Round', open_round_path, method: :post %>
-    </button>
-  <% else %>
-    <button type="button" class="btn btn-default">
-      <%= link_to 'Close Round', close_round_path, method: :post %>
-    </button>
-    <i> Round <%= @open_round.id %> Voting is open </i><br>
-  <% end %>
-  <br><br>
 
   <ul class="list-group">
     <% @pitches.each do |pitch| %>
@@ -37,7 +24,7 @@
           <% end %>
         </p>
         <p>  
-        <% if @recent_round.open == true %>
+        <% if @round.open == true %>
           <p><i>Voting is currently taking place</i>
         <% else %>
           <div class="form-group">

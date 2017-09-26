@@ -19,8 +19,8 @@ class RoundsController < ApplicationController
   def show 
     if logged_in?
       if admin?
-        @open_round = Round.find_by(open: true)
-        @round = Round.last
+        @round = Round.find(params[:id])
+        @new_round = Round.last
         @pitches = Pitch.all
       else 
         redirect_to rounds_path
@@ -34,6 +34,14 @@ class RoundsController < ApplicationController
     @round = Round.new 
     if @round.save
       redirect_to rounds_path
+    end
+  end
+
+  def begin_selection
+    @round = Round.find(params[:id])
+    @new_round = Round.new 
+    if @new_round.save
+      redirect_to rounds_path(@round)
     end
   end
 
