@@ -15,7 +15,7 @@ class TeamsController < ApplicationController
     if logged_in? && admin?
       @team = Team.new
       @users = User.all
-      @pitch_rounds = PitchRound.where(round_id: 2)
+      @pitches = Round.last.pitches
     else
       flash[:notice] = "You do not have access to this page."
       redirect_to login_path

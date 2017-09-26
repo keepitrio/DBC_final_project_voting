@@ -1,45 +1,16 @@
 <div class = "container-fluid">
   <h1>Create the teams</h1>
 
-    <ul class="list-inline">
-    <li>
-      <strong><%= @pitch_rounds[0].pitch.title %> </strong>
+  <% @pitches.each do |pitch| %>
+    <strong> <%= pitch.title %></strong>
       <%= form_for :teams do |f| %>
         <% @users.each do |user| %>
-              <%= f.check_box user.id %>
-              <%= user.name %><br>
-            <% end %>
-            <%= f.hidden_field :pitch_id, :value => @pitch_rounds[0].pitch.id %>
-          <%= f.submit %>
-
-      <% end %>
-
-    </li>
-
-    <li>
-      <strong><%= @pitch_rounds[1].pitch.title %> </strong>
-      <%= form_for :teams do |f| %>
-        <% @users.each do |user| %>
-              <%= f.check_box user.id %>
-              <%= user.name %><br>
-            <% end %>
-            <%= f.hidden_field :pitch_id, :value => @pitch_rounds[1].pitch.id %>
+          <%= f.check_box user.id %>
+          <%= user.name %><br>
+        <% end %>
+        <%= f.hidden_field :pitch_id, :value => pitch.id %>
           <%= f.submit %>
       <% end %>
-
-    </li>
-
-    <li>
-      <strong><%= @pitch_rounds[2].pitch.title %></strong>
-      <%= form_for :teams do |f| %>
-        <% @users.each do |user| %>
-              <%= f.check_box user.id %>
-              <%= user.name %><br>
-            <% end %>
-            <%= f.hidden_field :pitch_id, :value => @pitch_rounds[2].pitch.id %>
-          <%= f.submit %>
-      <% end %>
-    </li>
-    </ul>
+  <% end %>
 
 </div>

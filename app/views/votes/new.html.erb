@@ -2,8 +2,8 @@
 	<h1>Vote for your favorite pitch!</h1>
 
 	<%= form_with(model: [ @round, @round.votes.build ], local: true)  do |f| %>
-    <%= f.hidden_field :user_id, :value => session[:user_id].to_i %>
-    <%= f.hidden_field :round_id, :value => params[:round_id].to_i %>
+    <%= f.hidden_field :user_id, :value => session[:user_id] %>
+    <%= f.hidden_field :round_id, :value => params[:round_id] %>
 		<% @pitches.each do |pitch| %>
 			<%= check_box_tag "vote[pitch_id]", pitch.id %> 
 			<%= pitch.title %>

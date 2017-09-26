@@ -20,8 +20,13 @@ class RoundsController < ApplicationController
     if logged_in?
       if admin?
         @round = Round.find(params[:id])
+        @penultimate_round = Round.second_to_last
         @new_round = Round.last
-        @pitches = Pitch.all
+        if @new_round.votes.count != 0 
+          @pitches = @round.pitches
+        else
+          @pitches = @penultimate_round.pitches + @new_round.pitches
+        end
       else 
         redirect_to rounds_path
       end 

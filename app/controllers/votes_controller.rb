@@ -1,9 +1,11 @@
 class VotesController < ApplicationController
 	include SessionsHelper
+  include RoundsHelper
+
 	def new
 		@round = Round.find_by(open:true)
 		if logged_in? 
-			if @round && @round.votes.find_by(user_id: session[:user_id]) == nil
+			if @round && !voted?(@round)
 				@pitches = @round.pitches
 				@vote = Vote.new
 			else
@@ -17,12 +19,19 @@ class VotesController < ApplicationController
 
 	def create
 		@round = Round.find(params[:round_id])
-		@vote = @round.votes.create(vote_params)
-		redirect_to pitches_path
+    p "***********"
+    p @round
+		@vote = Vote.create(vote_params)
+    p @vote
+    p"******"
+    p vote_params
+    if @vote.save
+		  redirect_to pitches_path
+    end
 	end
 
 	private
   def vote_params
-    params.require(:vote).permit!
+    params.require(:vote).permit(:round_id, :pitch_id, :user_id)
   end
 end
