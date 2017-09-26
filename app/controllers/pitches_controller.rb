@@ -33,8 +33,9 @@ class PitchesController < ApplicationController
 
   def move_to_next_round
     @pitch = Pitch.find(id_params)
-    @pitch.update_attributes(round_id: Round.last.id + 1)
-    redirect_to users_path
+    @pitch.update_attributes(round_id: Round.last.id)
+    @previous_round = Round.second_to_last
+    redirect_to @previous_round
   end 
 
 

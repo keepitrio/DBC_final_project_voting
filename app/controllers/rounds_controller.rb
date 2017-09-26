@@ -41,7 +41,7 @@ class RoundsController < ApplicationController
     @round = Round.find(params[:id])
     @new_round = Round.new 
     if @new_round.save
-      redirect_to rounds_path(@round)
+      redirect_to round_path(@round)
     end
   end
 
