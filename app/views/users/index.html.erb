@@ -1,9 +1,11 @@
 <div class = "container-fluid">
   <h1> Pitches </h1>
 
-  <button type="button" class="btn btn-default">
-    <%= link_to "Create New Round", create_round_path, method: :post %>
-  </button>
+  <% if @recent_round.votes.count != 0 %>
+    <button type="button" class="btn btn-default">
+      <%= link_to "Create New Round", create_round_path, method: :post %>
+    </button>
+  <% end %>
   <button type="button" class="btn btn-default">
     <%= link_to "Create Teams", new_team_path %>
   </button>
@@ -41,6 +43,8 @@
           <div class="form-group">
             <%= button_to 'Move on to Next Round', move_to_next_round_path(:pitch_id => pitch.id), method: :post, class: "btn btn-default"%>
           </div>
+        <% else %>
+          <p><i> On to the Next Round </i></p>
         <% end %>
       <% end %>
       </p>
