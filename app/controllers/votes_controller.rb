@@ -1,9 +1,8 @@
 class VotesController < ApplicationController
 	include SessionsHelper
 	def new
-		if logged_in? && current_user.votes.count == 0
-			@round = Round.find_by(open:true)
-			@recent_round = Round.last
+		@round = Round.find_by(open:true)
+		if logged_in? && @round.votes.find_by(user_id: session[:user_id]) == nil
 			if @round 
 				@pitches = @round.pitches
 				@vote = Vote.new

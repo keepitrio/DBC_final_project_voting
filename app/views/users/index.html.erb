@@ -35,12 +35,12 @@
           <% end %>
         </p>
         <p>  
-        <% if pitch.round.id != @recent_round.id %>
+        <% if @recent_round.open == true %>
+          <p><i>Voting is currently taking place</i>
+        <% elsif  pitch.round.id != @recent_round.id %>
           <div class="form-group">
             <%= button_to 'Move on to Next Round', move_to_next_round_path(:pitch_id => pitch.id), method: :post, class: "btn btn-default"%>
           </div>
-        <% else %>
-          <p><i> On to the Next Round </i></p>
         <% end %>
       <% end %>
       </p>
