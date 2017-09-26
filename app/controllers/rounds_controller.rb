@@ -6,10 +6,10 @@ class RoundsController < ApplicationController
     if logged_in?
       if admin?
         @open_round = Round.find_by(open: true)
-        @recent_round = Round.last
+        @round = Round.last
         @pitches = Pitch.all
       else 
-        redirect_to pitches_path
+        redirect_to rounds_path
       end 
     else 
       redirect_to login_path
@@ -20,10 +20,10 @@ class RoundsController < ApplicationController
     if logged_in?
       if admin?
         @open_round = Round.find_by(open: true)
-        @recent_round = Round.last
+        @round = Round.last
         @pitches = Pitch.all
       else 
-        redirect_to pitches_path
+        redirect_to rounds_path
       end 
     else 
       redirect_to login_path
