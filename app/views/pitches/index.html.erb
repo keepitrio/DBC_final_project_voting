@@ -1,7 +1,7 @@
 <div class = "container-fluid">
   <h1>Final Project Pitches</h1>
   <% if @round%>
-    <% if !voted?(@round) %>
+    <% if !voted?(@round) && @round.open == true %>
       Round <%= @round.id %>: <%= link_to "Vote for a pitch", new_round_vote_path(:round_id => @round.id) %>
     <% elsif @round.open == false %>
   	  <button type="button" class="btn btn-default">

@@ -2,12 +2,11 @@ class VotesController < ApplicationController
 	include SessionsHelper
 	def new
 		@round = Round.find_by(open:true)
-		if logged_in? && @round.votes.find_by(user_id: session[:user_id]) == nil
-			if @round 
+		if logged_in? 
+			if @round && @round.votes.find_by(user_id: session[:user_id]) == nil
 				@pitches = @round.pitches
 				@vote = Vote.new
 			else
-				flash[:notice] = "Voting is not open at this time."
 				redirect_to pitches_path
 			end
 		else 

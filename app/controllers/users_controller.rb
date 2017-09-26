@@ -6,7 +6,7 @@ class UsersController < ApplicationController
       if admin?
         @open_round = Round.find_by(open: true)
         @recent_round = Round.last
-        @pitches = Pitch.where(round_id: @recent_round.id)
+        @pitches = Pitch.all
       else 
         redirect_to pitches_path
       end 
