@@ -1,11 +1,17 @@
 <div class = "container-fluid">
   <h1>Final Project Pitches</h1>
-  <% if @round && !voted?(@round) %>
-  	Round <%= @round.id %>: <%= link_to "Vote for a pitch", new_round_vote_path(:round_id => @round.id) %>
-  <% elsif !admin? %>
+  <% if @round%>
+    <% if !voted?(@round) %>
+      Round <%= @round.id %>: <%= link_to "Vote for a pitch", new_round_vote_path(:round_id => @round.id) %>
+    <% elsif @round.open == false %>
   	  <button type="button" class="btn btn-default">
         <%= link_to "New Pitch", new_pitch_path %>
       </button>
+    <% else %>
+      <div>
+        <p>You have voted!</p>
+      </div>
+    <% end %>
   <% end %>
       <br><br>
 

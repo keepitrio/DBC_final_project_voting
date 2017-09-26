@@ -1,34 +1,15 @@
 <div class = "container-fluid">
 	<h1>Vote for your favorite pitch!</h1>
 
-	<% if @open_round.round_number == 1 %>
-		<%= form_with url: round_votes_path(@open_round) do |f| %>
-			<% @pitches.each do |pitch| %>
-				<%= check_box_tag "pitches[]", pitch.id %>
-				<%= pitch.title %><br>
-			<% end %>
+	<%= form_with(model: [ @round, @round.votes.build ], local: true)  do |f| %>
+    <%= f.hidden_field :user_id, :value => session[:user_id].to_i %>
+    <%= f.hidden_field :round_id, :value => params[:round_id].to_i %>
+		<% @pitches.each do |pitch| %>
+			<%= check_box_tag "vote[pitch_id]", pitch.id %> 
+			<%= pitch.title %>
 			<br>
-			<%= f.submit %>
 		<% end %>
-	<% else %>
-		<% if @pitches.length < 4 %>
-			<%= form_with url: round_votes_path(@open_round) do |f| %>
-				<% @pitches.each do |pitch| %>
-					<%= f.radio_button "pitches[]", pitch.id %>
-					<%= pitch.title %><br>
-				<% end %>
-				<br>
-				<%= f.submit %>
-			<% end %>
-		<% else %>
-			<%= form_with url: round_votes_path(@open_round) do |f| %>
-				<% @pitches.each do |pitch| %>
-					<%= check_box_tag "pitches[]", pitch.id %>
-					<%= pitch.title %><br>
-				<% end %>
-				<br>
-				<%= f.submit %>
-			<% end %>
-		<% end %>
+		<br>
+		<%= f.submit %>
 	<% end %>
 </div>

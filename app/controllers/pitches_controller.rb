@@ -5,7 +5,7 @@ class PitchesController < ApplicationController
   def index
     if logged_in?
       @pitches = Pitch.all
-      @round = Round.find_by(open:true)
+      @round = Round.last
     else 
       redirect_to login_path
     end
@@ -14,6 +14,7 @@ class PitchesController < ApplicationController
   def new
     if logged_in?
       @pitch = Pitch.new
+      @round = Round.last
     else 
       redirect_to login_path
     end 

@@ -4,6 +4,7 @@
     <%= bootstrap_form_for(@pitch, layout: :horizontal, label_col: "col-sm-1", control_col: "col-sm-4") do |f| %>
       <%= f.text_field :title %>
       <%= f.text_area :description %>
+      <%= f.hidden_field :round_id, :value => @round.id  %>
       <%= f.form_group do  %>
         <%= f.submit %>
       <% end %>

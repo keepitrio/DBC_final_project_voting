@@ -1,10 +1,11 @@
 class VotesController < ApplicationController
 	include SessionsHelper
 	def new
-		if logged_in?
-			@open_round = Round.find_by(open:true)
-			if @open_round
-				@pitches = @open_round.pitches
+		if logged_in? && current_user.votes.count == 0
+			@round = Round.find_by(open:true)
+			if @round 
+				@pitches = @round.pitches
+				@vote = Vote.new
 			else
 				flash[:notice] = "Voting is not open at this time."
 				redirect_to pitches_path
@@ -17,13 +18,12 @@ class VotesController < ApplicationController
 
 	def create
 		@round = Round.find(params[:round_id])
-		voted = params[:pitches]
-
-		voted.each do |pitch_id|
-			Vote.create!(user_id: current_user.id, pitch_id: pitch_id, round_id: @round.id)
-		end
-		
-		flash[:notice] = "Thanks for voting!"
-		render js: "window.location = #{pitches_path}"
+		@vote = @round.votes.create(vote_params)
+		redirect_to pitches_path
 	end
+
+	private
+  def vote_params
+    params.require(:vote).permit!
+  end
 end
