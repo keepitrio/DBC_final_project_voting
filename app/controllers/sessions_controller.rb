@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:session][:password])
       login_user
       if logged_in? && admin?
-        redirect_to users_path
+        redirect_to rounds_path
       else 
         redirect_to pitches_path
       end

@@ -1,9 +1,9 @@
 <div class = "container-fluid">
   <h1> Pitches </h1>
 
-  <% if @recent_round.votes.count != 0 %>
+  <% if @recent_round.votes.count != 0 && @recent_round.open != true %>
     <button type="button" class="btn btn-default">
-      <%= link_to "Create New Round", create_round_path, method: :post %>
+      <%= link_to "Select Pitches", create_round_path, method: :post %>
     </button>
   <% end %>
   <button type="button" class="btn btn-default">
@@ -39,12 +39,10 @@
         <p>  
         <% if @recent_round.open == true %>
           <p><i>Voting is currently taking place</i>
-        <% elsif  pitch.round.id != @recent_round.id %>
-          <div class="form-group">
-            <%= button_to 'Move on to Next Round', move_to_next_round_path(:pitch_id => pitch.id), method: :post, class: "btn btn-default"%>
-          </div>
         <% else %>
-          <p><i> On to the Next Round </i></p>
+          <div class="form-group">
+            <%= button_to 'Select', move_to_next_round_path(:pitch_id => pitch.id), method: :post, class: "btn btn-default"%>
+          </div>
         <% end %>
       <% end %>
       </p>

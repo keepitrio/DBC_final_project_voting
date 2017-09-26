@@ -1,20 +1,6 @@
 class UsersController < ApplicationController
   include SessionsHelper
 
-  def index
-    if logged_in?
-      if admin?
-        @open_round = Round.find_by(open: true)
-        @recent_round = Round.last
-        @pitches = Pitch.all
-      else 
-        redirect_to pitches_path
-      end 
-    else 
-      redirect_to login_path
-    end 
-  end 
-
   def new 
     @user = User.new
   end 

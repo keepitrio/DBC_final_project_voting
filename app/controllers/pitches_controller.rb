@@ -4,8 +4,8 @@ class PitchesController < ApplicationController
 
   def index
     if logged_in?
-      @pitches = Pitch.all
       @round = Round.last
+      @pitches = Pitch.where(round_id: @round.id)
     else 
       redirect_to login_path
     end
@@ -33,7 +33,7 @@ class PitchesController < ApplicationController
 
   def move_to_next_round
     @pitch = Pitch.find(id_params)
-    @pitch.update_attributes(round_id: Round.last.id)
+    @pitch.update_attributes(round_id: Round.last.id + 1)
     redirect_to users_path
   end 
 
