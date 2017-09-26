@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   post '/create_round' => 'rounds#create_round'
   post '/open_round' => 'rounds#open_round'
   post '/close_round' => 'rounds#close_round'
-  post '/move_to_round_2' => 'pitch_rounds#move_to_round_2'
+  post '/move_to_next_round' => 'pitches#move_to_next_round'
   
   root to: 'sessions#login'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

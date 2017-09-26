@@ -3,6 +3,7 @@ class VotesController < ApplicationController
 	def new
 		if logged_in? && current_user.votes.count == 0
 			@round = Round.find_by(open:true)
+			@recent_round = Round.last
 			if @round 
 				@pitches = @round.pitches
 				@vote = Vote.new

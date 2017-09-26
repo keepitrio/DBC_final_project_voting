@@ -19,5 +19,10 @@ class RoundsController < ApplicationController
     redirect_to users_path
   end
 
+  def move_to_next_round
+    pitch.update_attributes(round_id: Round.last.id)
+    redirect_to users_path
+  end 
+
 end
 

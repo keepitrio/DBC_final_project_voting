@@ -2,12 +2,12 @@
   <h1> Pitches </h1>
 
   <button type="button" class="btn btn-default">
-    <%= link_to "Create New Round", create_round_path %>
+    <%= link_to "Create New Round", create_round_path, method: :post %>
   </button>
   <button type="button" class="btn btn-default">
     <%= link_to "Create Teams", new_team_path %>
   </button>
-  <% if @round == nil  %>
+  <% if @open_round == nil  %>
     <button type="button" class="btn btn-default">
       <%= link_to 'Open Round', open_round_path, method: :post %>
     </button>
@@ -15,7 +15,7 @@
     <button type="button" class="btn btn-default">
       <%= link_to 'Close Round', close_round_path, method: :post %>
     </button>
-    <i> Round <%= @round.id %> Voting is open </i><br>
+    <i> Round <%= @open_round.id %> Voting is open </i><br>
   <% end %>
   <br><br>
 
@@ -31,10 +31,19 @@
         <strong> Voters:</strong>
         <p>
           <% pitch.voters.each do |voter| %>
-            <%= voter.name %> |
+            <%= voter.name %> 
           <% end %>
         </p>
-    <% end %>
+        <p>  
+        <% if pitch.round.id != @recent_round.id %>
+          <div class="form-group">
+            <%= button_to 'Move on to Next Round', move_to_next_round_path(:pitch_id => pitch.id), method: :post, class: "btn btn-default"%>
+          </div>
+        <% else %>
+          <p><i> On to the Next Round </i></p>
+        <% end %>
+      <% end %>
+      </p>
   </dl>
 
 </div>
