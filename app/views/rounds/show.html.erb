@@ -3,9 +3,9 @@
     <h1> Pitches </h1>
   <% if @round.votes.count != 0 && @round.open != true && @new_round.votes.count != 0 %>
     <button type="button" class="btn btn-default">
-      <%= link_to "Begin Selection", begin_selection_path(id: @round.id), method: :post %>
+      <%= link_to "Advance to Next Round", begin_selection_path(id: @round.id), method: :post %>
     </button>
-    <p> Click here to begin the selection process.</p>
+    <p> Click here to begin the selection process for the next round.</p>
   <% end %>
 
   <ul class="list-group">
@@ -15,9 +15,9 @@
           <p> <%= pitch.title %> </p>
         <strong> Description: </strong> 
           <p><%= pitch.description %></p>
-        <strong> Votes: </strong> 
+        <strong> Total votes: </strong> 
           <p><%= pitch.votes.count %></p>
-        <strong> Voters:</strong>
+        <strong> All voters:</strong>
         <p>
           <% pitch.voters.each do |voter| %>
             <%= voter.name %> 

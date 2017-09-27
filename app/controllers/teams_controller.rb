@@ -25,10 +25,12 @@ class TeamsController < ApplicationController
     if logged_in? && admin?
       @team = Team.new(:pitch_id => id_params)
       if @team.save
-        redirect_to new_team_path
+        @pitch = Pitch.find(id_params)
+        @pitch.update_attributes(team_id: @team.id)
+        redirect_to finalize_pitches_path
       else
         flash[:notice] = "The team did not get saved"
-        redirect_to new_team_path
+        redirect_to finalize_pitches_path
       end
     end
   end

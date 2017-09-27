@@ -18,10 +18,14 @@
           <% end %>
         </p>
         <p>  
+    <% if pitch.team == nil %>
       <div class="form-group">
         <%= button_to 'Finalize', teams_path(:pitch_id => pitch.id), method: :post, class: "btn btn-default"%>
       </div>
+    <% else %>
+      <p><i>This pitch has been finalized! </i></p>
     <% end %>
+  <% end %>
       
   </ul>
 </div>
