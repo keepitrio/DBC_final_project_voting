@@ -4,11 +4,15 @@
   <% @teams.each do |team| %>
 
     <strong> <%= team.pitch.title %></strong><br>
+    <%= form_for :user, url: assign_users_path do |f| %>
+      <%= f.hidden_field :team_id, :value => team.id %>
       <% @users.each do |user| %>
-        <%= check_box "user", team.id %>
+        <%= check_box_tag "user_id[]", user.id %>
         <%= user.name %>
         <br>
       <% end %>
+    <%= f.submit "Create Team" %>
+    <% end %>
     
 
 

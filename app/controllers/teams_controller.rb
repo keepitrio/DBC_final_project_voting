@@ -46,10 +46,32 @@ class TeamsController < ApplicationController
     end
   end
 
+  def assign_users
+    p user_params
+    p user_id_params
+    p "**************"
+    user_id_params.each do |user_id|
+      user = User.find(user_id) 
+      user.update_attributes(team_id: user_params[:team_id])
+    end
+    redirect_to new_team_path
+  end
+
+
   private
+    def user_id_params
+      params.require(:user_id)
+    end
+
     def id_params
       params.require(:pitch_id)
     end
+
+    def user_params
+      params.require(:user).permit(:team_id)
+    end
+
+
 end
 
 
