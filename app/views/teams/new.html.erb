@@ -2,19 +2,25 @@
   <h1>Create the teams</h1>
 
   <% @teams.each do |team| %>
-
-    <strong> <%= team.pitch.title %></strong><br>
-    <%= form_for :user, url: assign_users_path do |f| %>
-      <%= f.hidden_field :team_id, :value => team.id %>
-      <% @users.each do |user| %>
-        <%= check_box_tag "user_id[]", user.id %>
-        <%= user.name %>
-        <br>
-      <% end %>
-    <%= f.submit "Create Team" %>
-    <% end %>
     
-
+    <h4> <%= team.pitch.title %></strong></h4>
+    <% if team.students == nil  %>
+      <%= form_for :user, url: assign_users_path do |f| %>
+        <%= f.hidden_field :team_id, :value => team.id %>
+        <% @users.each do |user| %>
+          <%= check_box_tag "user_id[]", user.id %>
+          <%= user.name %>
+          <br>
+        <% end %>
+      <%= f.submit "Create Team" %>
+      <% end %>
+    <% else %>
+      <p> Team has been set! </p>
+      <button type="button" class="btn btn-default">
+        <%= link_to "See the new team!", team_path(team), method: :get %>
+      </button>
+      <br><br>
+    <% end %>
 
   <% end %>
 
