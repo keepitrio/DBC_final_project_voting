@@ -9,7 +9,7 @@ class RoundsController < ApplicationController
         @round = Round.last
         @pitches = Pitch.all
       else 
-        redirect_to rounds_path
+        redirect_to pitches_path
       end 
     else 
       redirect_to login_path

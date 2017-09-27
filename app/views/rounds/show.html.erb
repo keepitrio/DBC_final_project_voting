@@ -1,12 +1,15 @@
 <div class = "container-fluid">
 
+  <div class = "page-header">
     <h1> Pitches </h1>
-  <% if @round.votes.count != 0 && @round.open != true && @new_round.votes.count != 0 %>
-    <button type="button" class="btn btn-default">
-      <%= link_to "Advance to Next Round", begin_selection_path(id: @round.id), method: :post %>
-    </button>
-    <p> Click here to begin the selection process for the next round.</p>
-  <% end %>
+    <% if @round.votes.count != 0 && @round.open != true && @new_round.votes.count != 0 %>
+        <%= link_to "Advance to Next Round", begin_selection_path(id: @round.id), method: :post, class: "btn btn-primary" %>
+      </button>
+      <p> Click here to begin the selection process for the next round.</p>
+    <% end %>
+  </div>
+
+  <%= link_to 'Back to Home', rounds_path, class: "btn btn-primary"%> <br><br>
 
   <ul class="list-group">
     <% @pitches.each do |pitch| %>
@@ -22,20 +25,18 @@
           <% pitch.voters.each do |voter| %>
             <%= voter.name %> 
           <% end %>
-        </p>
-        <p>  
+        </p> 
         <% if @round.open == true  %>
-          <p><i>Voting is currently taking place</i>
+          <p><i>Voting is currently taking place</i></p>
         <% elsif @new_round.votes.count != 0 %>
         <% elsif pitch.round.id != @round.id %>
           <p><i> Pitch has been selected </i></p>
         <% else %>
           <div class="form-group">
-            <%= button_to 'Select', move_to_next_round_path(:pitch_id => pitch.id), method: :post, class: "btn btn-default"%>
+            <%= button_to 'Select', move_to_next_round_path(:pitch_id => pitch.id), method: :post, class: "btn btn-primary"%>
           </div>
         <% end %>
       <% end %>
-      </p>
-  </dl>
-
+  </ul>
+  
 </div>
