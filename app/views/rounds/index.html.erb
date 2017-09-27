@@ -6,29 +6,35 @@
       <%= link_to "Create New Round", create_round_path, method: :post %>
     </button>
     <p> Click here to create a new round for students to start pitching ideas.</p>
-  <% elsif @round != nil %> 
+
+  <% elsif @round != nil %>
     <% if @open_round == nil%>
       <button type="button" class="btn btn-default">
         <%= link_to 'Open Round', open_round_path, method: :post %>
       </button>
       <p> Click here so students can start voting for their favorite pitches </p>
+
     <% else %>
       <button type="button" class="btn btn-default">
         <%= link_to 'Close Round', close_round_path, method: :post %>
       </button>
         <p><i> Round <%= @open_round.id %> Voting is open. </i>Click here to close voting! </p>
     <% end %>
+
     <button type="button" class="btn btn-default">
       <%= link_to "Current Round", round_path(@round)%>
     </button>
     <p> Click here to see the pitches! </p>
+
     <button type="button" class="btn btn-default">
       <%= link_to "Finalize Pitches", finalize_pitches_path %>
     </button>
     <p> Click here to finalize the pitches! </p>
+
   <% end %>
 
   <button type="button" class="btn btn-default">
     <%= link_to "Create Teams", new_team_path %>
   </button>
+
   <p> Click here to create new teams! </p>

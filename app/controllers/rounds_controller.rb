@@ -17,21 +17,25 @@ class RoundsController < ApplicationController
   end 
 
   def show 
-    if logged_in?
+    if logged_in? 
       if admin?
         @round = Round.find(params[:id])
         @penultimate_round = Round.second_to_last
         @new_round = Round.last
-        if @new_round.votes.count != 0 
+        if @penultimate_round == nil 
           @pitches = @round.pitches
+        elsif @new_round.open == true 
+          @pitches = @round.pitches 
+        elsif @new_round.id != @round.id 
+          @pitches = @round.pitches + @new_round.pitches
         else
-          @pitches = @penultimate_round.pitches + @new_round.pitches
+          @pitches = @round.pitches
         end
-      else 
-        redirect_to rounds_path
-      end 
-    else 
-      redirect_to login_path
+      else
+        redirect_to pitches_path, notice: "You do not have permission to access this page."
+      end
+    else
+      redirect_to login_path, notice: "Please log in."
     end
   end
 

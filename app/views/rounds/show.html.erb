@@ -28,7 +28,7 @@
           <p><i>Voting is currently taking place</i>
         <% elsif @new_round.votes.count != 0 %>
         <% elsif pitch.round.id != @round.id %>
-          <p><i> Pitch as been selected </i></p>
+          <p><i> Pitch has been selected </i></p>
         <% else %>
           <div class="form-group">
             <%= button_to 'Select', move_to_next_round_path(:pitch_id => pitch.id), method: :post, class: "btn btn-default"%>
