@@ -1,9 +1,12 @@
 <div class = "container-fluid">
 
   <h1>Final Teams</h1>
-  <ul>
+  <dt>
     <% @teams.each do |t| %>
-      <li><%= t.pitch.title %>: <%= link_to 'Details', team_path(t) %></li>
+      <dh>
+        <h5><%= t.pitch.title %> </h5>
+        <dd><%= link_to 'Details', team_path(t) %></dd>
+      </dh>
     <% end %>
-  </ul>
+  </dt>
 </div>
