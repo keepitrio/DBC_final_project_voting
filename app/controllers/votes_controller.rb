@@ -19,19 +19,18 @@ class VotesController < ApplicationController
 
 	def create
 		@round = Round.find(params[:round_id])
-    p "***********"
-    p @round
-		@vote = Vote.create(vote_params)
-    p @vote
-    p"******"
-    p vote_params
+    @user = User.find(session[:user_id])
+
+    pitch_params[:pitch_id].each do |pitch|
+      @vote = Vote.create(round_id: @round.id, user_id: @user.id, pitch_id: pitch)
+    end 
     if @vote.save
-		  redirect_to pitches_path
+      redirect_to pitches_path
     end
 	end
 
 	private
-  def vote_params
-    params.require(:vote).permit(:round_id, :pitch_id, :user_id)
+  def pitch_params
+    params.require(:vote).permit(:pitch_id, :pitch_id => [])
   end
 end

@@ -13,9 +13,8 @@ class TeamsController < ApplicationController
 
   def new
     if logged_in? && admin?
-      @team = Team.new
       @users = User.all
-      @pitches = Round.last.pitches
+      @teams = Team.all
     else
       flash[:notice] = "You do not have access to this page."
       redirect_to login_path
@@ -24,12 +23,7 @@ class TeamsController < ApplicationController
 
   def create
     if logged_in? && admin?
-      p id_params
-      p "***********"
       @team = Team.new(:pitch_id => id_params)
-      p "***********"
-      p id_params
-      p @team
       if @team.save
         redirect_to new_team_path
       else
