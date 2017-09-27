@@ -1,5 +1,8 @@
 <div class = "container-fluid">
-  <h1>Create the teams</h1>
+
+  <div class = "page-header">
+    <h1>Create the teams</h1>
+  </div>
 
   <% @teams.each do |team| %>
     
@@ -16,9 +19,7 @@
       <% end %>
     <% else %>
       <p> Team has been set! </p>
-      <button type="button" class="btn btn-default">
-        <%= link_to "See the new team!", team_path(team), method: :get %>
-      </button>
+        <%= link_to "See the new team!", team_path(team), method: :get, class: "btn btn-primary" %>
       <br><br>
     <% end %>
 

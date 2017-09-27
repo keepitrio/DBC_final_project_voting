@@ -1,6 +1,10 @@
 <div class = "container-fluid">
 
-  <h1> Pitches </h1>
+  <div class = "page-header">
+    <h1> Pitches </h1>
+  </div>
+  
+  <%= link_to 'Back to Home', rounds_path, class: "btn btn-primary"%> <br><br>
 
   <ul class="list-group">
     <% @pitches.each do |pitch| %>
