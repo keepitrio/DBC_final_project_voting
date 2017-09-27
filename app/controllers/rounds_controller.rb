@@ -61,6 +61,11 @@ class RoundsController < ApplicationController
     redirect_to rounds_path
   end
 
+  def finalize_pitches
+    @round = Round.last
+    @pitches = @round.pitches
+  end 
+
 
 end
 

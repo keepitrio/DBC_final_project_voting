@@ -24,12 +24,17 @@ class TeamsController < ApplicationController
 
   def create
     if logged_in? && admin?
-      @team = Team.new(team_params)
+      p id_params
+      p "***********"
+      @team = Team.new(:pitch_id => id_params)
+      p "***********"
+      p id_params
+      p @team
       if @team.save
-        redirect_to teams_path
+        redirect_to new_team_path
       else
         flash[:notice] = "The team did not get saved"
-        render "new"
+        redirect_to new_team_path
       end
     end
   end
@@ -37,7 +42,7 @@ class TeamsController < ApplicationController
 
   def show
     if logged_in?
-      @team = Team.find(team_params)
+      @team = Team.find(params[:id])
       render 'show'
     else
       flash[:notice] = "You do not have access to this page."
@@ -46,8 +51,8 @@ class TeamsController < ApplicationController
   end
 
   private
-    def team_params
-      params.require(:team).permit(:id)
+    def id_params
+      params.require(:pitch_id)
     end
 end
 

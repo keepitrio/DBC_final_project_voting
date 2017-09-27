@@ -2,15 +2,17 @@
   <h1>Create the teams</h1>
 
   <% @pitches.each do |pitch| %>
-    <strong> <%= pitch.title %></strong>
-      <%= form_for :teams do |f| %>
-        <% @users.each do |user| %>
-          <%= f.check_box user.id %>
-          <%= user.name %><br>
-        <% end %>
-        <%= f.hidden_field :pitch_id, :value => pitch.id %>
-          <%= f.submit %>
+
+    <strong> <%= pitch.title %></strong><br>
+    <%= form_for(:teams, url: teams_path ) do |f| %>
+      <% @users.each do |user| %>
+        <%= f.check_box "team[user_id]", pitch.team.id %>
+        <%= user.name %><br>
       <% end %>
+        <%= f.hidden_field :pitch_id, :value => pitch.id %>
+      <%= f.submit %>
+    <% end %>
+
   <% end %>
 
 </div>
