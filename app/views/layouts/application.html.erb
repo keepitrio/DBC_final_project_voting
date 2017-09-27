@@ -15,12 +15,12 @@
         <ul class="nav navbar-nav">
           <% if logged_in? %>
             <% @user = User.find_by(id: session[:user_id]) %>
-            <li> <%= link_to 'Logout', logout_path, method: :delete %> </li>
             <li> <%= link_to 'Pitches', pitches_path %> </li>
             <% if admin? %>
               <li> <%= link_to 'Home',  rounds_path%> </li>
               <li> <%= link_to 'Create teams', new_team_path%> </li>
             <% end %>
+            <li> <%= link_to 'Logout', logout_path, method: :delete %> </li>
           <% end  %>
         </ul>
     </div>
