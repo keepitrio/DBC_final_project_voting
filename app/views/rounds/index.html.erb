@@ -1,45 +1,33 @@
 <div class = "container-fluid">
-  <h1> Welcome, Admin! </h1>
-
+  <div class = "page-header">
+    <h1> Welcome, Admin! </h1>
+  </div>
+  
   <% if @round == nil %>
-    <button type="button" class="btn btn-default">
-      <%= link_to "Create New Round", create_round_path, method: :post %>
-    </button>
+    <%= link_to "Create New Round", create_round_path, method: :post, class: "btn btn-primary" %>
     <p> Click here to create a new round for students to start pitching ideas.</p>
 
   <% elsif @round != nil %>
     <% if @open_round == nil%>
-      <button type="button" class="btn btn-default">
-        <%= link_to 'Open Round', open_round_path, method: :post %>
-      </button>
+        <%= link_to 'Open Round', open_round_path, method: :post, class: "btn btn-primary" %>
       <p> Click here so students can start voting for their favorite pitches </p>
 
     <% else %>
-      <button type="button" class="btn btn-default">
-        <%= link_to 'Close Round', close_round_path, method: :post %>
-      </button>
+        <%= link_to 'Close Round', close_round_path, method: :post, class: "btn btn-primary" %>
         <p><i> Round <%= @open_round.id %> Voting is open. </i>Click here to close voting! </p>
     <% end %>
 
-    <button type="button" class="btn btn-default">
-      <%= link_to "Current Round", round_path(@round)%>
-    </button>
+      <%= link_to "Current Round", round_path(@round), class: "btn btn-primary"%>
     <p> Click here to see the pitches! </p>
 
-    <button type="button" class="btn btn-default">
-      <%= link_to "Finalize Pitches", finalize_pitches_path %>
-    </button>
+      <%= link_to "Finalize Pitches", finalize_pitches_path, class: "btn btn-primary" %>
     <p> Click here to finalize the pitches! </p>
 
   <% end %>
 
-  <button type="button" class="btn btn-default">
-    <%= link_to "Create Teams", new_team_path %>
-  </button>
+    <%= link_to "Create Teams", new_team_path, class: "btn btn-primary" %>
   <p> Click here to create new teams! </p>
 
-  <button type="button" class="btn btn-default">
-    <%= link_to "See Teams", teams_path %>
-  </button>
+    <%= link_to "See Teams", teams_path, class: "btn btn-primary" %>
   <p> Click here to view the teams! </p>
   

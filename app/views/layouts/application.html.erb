@@ -15,7 +15,9 @@
         <ul class="nav navbar-nav">
           <% if logged_in? %>
             <% @user = User.find_by(id: session[:user_id]) %>
-            <li> <%= link_to 'Pitches', pitches_path %> </li>
+            <% if !admin? %>
+              <li> <%= link_to 'Home', pitches_path %> </li>
+            <% end %>
             <% if admin? %>
               <li> <%= link_to 'Home',  rounds_path%> </li>
               <li> <%= link_to 'Create teams', new_team_path%> </li>
