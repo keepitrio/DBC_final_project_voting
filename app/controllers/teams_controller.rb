@@ -35,7 +35,6 @@ class TeamsController < ApplicationController
     end
   end
 
-
   def show
     if logged_in?
       @team = Team.find(params[:id])
@@ -47,9 +46,6 @@ class TeamsController < ApplicationController
   end
 
   def assign_users
-    p user_params
-    p user_id_params
-    p "**************"
     user_id_params.each do |user_id|
       user = User.find(user_id) 
       user.update_attributes(team_id: user_params[:team_id])
@@ -70,8 +66,7 @@ class TeamsController < ApplicationController
     def user_params
       params.require(:user).permit(:team_id)
     end
-
-
+    
 end
 
 

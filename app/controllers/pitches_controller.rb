@@ -4,6 +4,7 @@ class PitchesController < ApplicationController
 
   def index
     if logged_in?
+      @teams = Team.all
       @round = Round.last
       @pitches = Pitch.where(round_id: @round.id)
     else 

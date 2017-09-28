@@ -5,6 +5,8 @@ class RoundsController < ApplicationController
   def index 
     if logged_in?
       if admin?
+        @teams = Team.all
+        @team = Team.last
         @open_round = Round.find_by(open: true)
         @round = Round.last
         @pitches = Pitch.all
@@ -32,10 +34,10 @@ class RoundsController < ApplicationController
           @pitches = @round.pitches
         end
       else
-        redirect_to pitches_path, notice: "You do not have permission to access this page."
+        redirect_to pitches_path
       end
     else
-      redirect_to login_path, notice: "Please log in."
+      redirect_to login_path
     end
   end
 
@@ -66,8 +68,16 @@ class RoundsController < ApplicationController
   end
 
   def finalize_pitches
-    @round = Round.last
-    @pitches = @round.pitches
+    if logged_in? 
+      if admin?
+        @round = Round.last
+        @pitches = @round.pitches
+      else
+        redirect_to pitches_path
+      end 
+    else
+      redirect_to login_path
+    end
   end 
 
 
