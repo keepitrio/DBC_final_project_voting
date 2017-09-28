@@ -1,22 +1,35 @@
-<h1>Final Project Pitches</h1>
-<% if @round && !voted?(@round) %>
-	Round <%= @round.round_number %>: <%= link_to "Vote for a pitch", new_round_vote_path(:round_id => @round.id) %>
-<% else %>
-	<%= link_to "New Pitch", new_pitch_path %>
-<% end %>
+<div class = "container-fluid">
+  <div class="page-header">
+    <h1>Final Project Pitches</h1>
+  </div>
 
-<% if logged_in? && admin? %>
-	<%= button_to 'Open round 1', open_round_1_path, method: :post %>
-	<%= button_to 'Open round 2', open_round_2_path, method: :post %>
-	<%= button_to 'Close all rounds', close_round_path, method: :post %>
-<% end %>
+  <% if @teams.count == 0 %>
+    <% if @round%>
+      <% if !voted?(@round) && @round.open == true %>
+        <%= link_to "Vote for a pitch", new_round_vote_path(:round_id => @round.id), class: "btn btn-primary" %>
+        <br><br>
+      <% elsif @round.open == false %>
+        <%= link_to "New Pitch", new_pitch_path, class: "btn btn-primary" %>
+      <% else %>
+          <h4><i>You have voted!</i></h4>
+      <% end %>
+    <% end %>
 
-<ul>
-  <% @pitches.each do |p| %>
-    <li><p><%= p.title %></p><%= link_to "Description", pitch_path(p) %></li>
+    <ul class="list-group">
+      <% @pitches.each do |pitch| %>
+        <li class="list-group-item">
+          <strong><%= pitch.title %></strong> 
+          <p><%= pitch.description %></p>
+          <i>Pitched by <%= pitch.student.name %></i>
+        </li>
+        <br>
+      <% end %>
+    </ul>
+  <% else %>
+    <%= link_to "See Teams", teams_path, class: "btn btn-primary" %>
+    <p> Click here to view the teams! </p>
   <% end %>
-</ul>
-
+  </div>
 
 
 

@@ -1,37 +1,27 @@
+<div class = "container-fluid">
 
-<h1>Pitches</h1>
+  <div class = "page-header">
+    <h1>Create the teams</h1>
+  </div>
 
-<strong><%= @pitch_rounds[0].pitch.title %> </strong>
-<%= form_for :teams do |f| %>
-  <% @users.each do |user| %>
-        <%= f.check_box user.id %>
-        <%= user.name %><br>
+  <% @teams.each do |team| %>
+    
+    <h4> <%= team.pitch.title %></strong></h4>
+    <% if team.students.count == 0  %>
+      <%= bootstrap_form_for :user, url: assign_users_path do |f| %>
+        <%= f.hidden_field :team_id, :value => team.id %>
+        <% @users.each do |user| %>
+          <%= check_box_tag "user_id[]", user.id %>
+          <%= user.name %>
+          <br>
+        <% end %>
+      <%= f.submit "Create Team" %><br><br>
       <% end %>
-      <%= f.hidden_field :pitch_id, :value => @pitch_rounds[0].pitch.id %>
-    <%= f.submit %>
+    <% else %>
+      <p> Team has been set! </p>
+      <br>
+    <% end %>
 
-<% end %>
-
-<br>
-
-<strong><%= @pitch_rounds[1].pitch.title %> </strong>
-<%= form_for :teams do |f| %>
-  <% @users.each do |user| %>
-        <%= f.check_box user.id %>
-        <%= user.name %><br>
-      <% end %>
-      <%= f.hidden_field :pitch_id, :value => @pitch_rounds[1].pitch.id %>
-    <%= f.submit %>
-<% end %>
-
-<br>
-
-<strong><%= @pitch_rounds[2].pitch.title %></strong>
-<%= form_for :teams do |f| %>
-  <% @users.each do |user| %>
-        <%= f.check_box user.id %>
-        <%= user.name %><br>
-      <% end %>
-      <%= f.hidden_field :pitch_id, :value => @pitch_rounds[2].pitch.id %>
-    <%= f.submit %>
-<% end %>
+  <% end %>
+  <%= link_to "View the teams", teams_path, method: :get, class: "btn btn-primary" %>
+</div>

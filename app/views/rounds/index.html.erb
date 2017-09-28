@@ -1,0 +1,34 @@
+<div class = "container-fluid">
+  <div class = "page-header">
+    <h1> Welcome, Admin! </h1>
+  </div>
+    
+  <% if @teams.count == 0 %>
+    <% if @round == nil %>
+      <%= link_to "Create New Round", create_round_path, method: :post, class: "btn btn-primary" %>
+      <p> Click here to create a new round for students to start pitching ideas.</p>
+
+    <% elsif @round != nil %>
+
+      <% if @open_round == nil%>
+        <%= link_to 'Open Round', open_round_path, method: :post, class: "btn btn-primary" %>
+        <p> Click here so students can start voting for their favorite pitches </p>
+
+      <% else %>
+          <%= link_to 'Close Round', close_round_path, method: :post, class: "btn btn-primary" %>
+          <p><i> Round <%= @open_round.id %> Voting is open. </i>Click here to close voting! </p>
+      <% end %>
+
+      <%= link_to "Current Round", round_path(@round), class: "btn btn-primary"%>
+      <p> Click here to see the pitches! </p>
+
+      <%= link_to "Finalize Pitches", finalize_pitches_path, class: "btn btn-primary" %>
+      <p> Click here to finalize the pitches! </p>
+    <% end %>
+  <% elsif @team.students.count == 0 %>
+      <%= link_to "Create Teams", new_team_path, class: "btn btn-primary" %>
+      <p> Click here to create new teams! </p>
+  <% else %>
+    <%= link_to "See Teams", teams_path, class: "btn btn-primary" %>
+    <p> Click here to view the teams! </p>
+  <% end %>

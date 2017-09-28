@@ -1,0 +1,35 @@
+<div class = "container-fluid">
+
+  <div class = "page-header">
+    <h1> Pitches </h1>
+  </div>
+  
+  <%= link_to 'Back to Home', rounds_path, class: "btn btn-primary"%> <br><br>
+
+  <ul class="list-group">
+    <% @pitches.each do |pitch| %>
+      <li class="list-group-item">
+        <strong>Title:</strong>
+          <p> <%= pitch.title %> </p>
+        <strong> Description: </strong> 
+          <p><%= pitch.description %></p>
+        <strong> Votes: </strong> 
+          <p><%= pitch.votes.count %></p>
+        <strong> Voters:</strong>
+        <p>
+          <% pitch.voters.each do |voter| %>
+            <%= voter.name %> 
+          <% end %>
+        </p>
+        <p>  
+    <% if pitch.team == nil %>
+      <div class="form-group">
+        <%= button_to 'Finalize', teams_path(:pitch_id => pitch.id), method: :post, class: "btn btn-default"%>
+      </div>
+    <% else %>
+      <p><i>This pitch has been finalized! </i></p>
+    <% end %>
+  <% end %>
+      
+  </ul>
+</div>

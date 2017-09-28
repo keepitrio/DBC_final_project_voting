@@ -1,6 +1,14 @@
-<h1>Final Teams</h1>
-<ul>
-  <% @teams.each do |t| %>
-    <li><%= t.pitch.title %> <%= link_to 'Details', team_path(t) %></li>
-  <% end %>
-</ul>
+<div class = "container-fluid">
+
+  <div class = "page-header">
+    <h1>Final Teams</h1>
+  </div>
+  <dt>
+    <% @teams.each do |t| %>
+      <dh>
+        <h4><%= t.pitch.title %> </h4>
+        <dd><%= link_to 'Details', team_path(t) %></dd>
+      </dh>
+    <% end %>
+  </dt>
+</div>

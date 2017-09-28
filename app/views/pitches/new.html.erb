@@ -1,18 +1,12 @@
-<h1>whats the big idea</h1>
+<div class = "container-fluid">
+  <h1>What's the idea?</h1>
 
-<%= form_for(@pitch) do |f| %>
-  <p>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </p>
-
-  <p>
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </p>
-
-  <p>
-    <%= f.submit %>
-  </p>
-
-<% end %>
+    <%= bootstrap_form_for(@pitch, layout: :horizontal, label_col: "col-sm-1", control_col: "col-sm-4") do |f| %>
+      <%= f.text_field :title %>
+      <%= f.text_area :description %>
+      <%= f.hidden_field :round_id, :value => @round.id  %>
+      <%= f.form_group do  %>
+        <%= f.submit %>
+      <% end %>
+    <% end %>
+</div>

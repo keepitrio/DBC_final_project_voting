@@ -4,10 +4,10 @@ class PitchesController < ApplicationController
 
   def index
     if logged_in?
-      @pitches = Pitch.all
-      @round = Round.where(open:true)[0]
+      @teams = Team.all
+      @round = Round.last
+      @pitches = Pitch.where(round_id: @round.id)
     else 
-      flash[:notice] = "You do not have access to this page."
       redirect_to login_path
     end
   end 
@@ -15,8 +15,8 @@ class PitchesController < ApplicationController
   def new
     if logged_in?
       @pitch = Pitch.new
+      @round = Round.last
     else 
-      flash[:notice] = "You do not have access to this page."
       redirect_to login_path
     end 
   end 
@@ -32,35 +32,22 @@ class PitchesController < ApplicationController
     end
   end
 
-  def show
-    if logged_in?
-      @pitch = Pitch.find(params[:id])
-    else 
-      flash[:notice] = "You do not have access to this page."
-      redirect_to login_path
-    end 
-  end
+  def move_to_next_round
+    @pitch = Pitch.find(id_params)
+    @pitch.update_attributes(round_id: Round.last.id)
+    @previous_round = Round.second_to_last
+    redirect_to @previous_round
+  end 
 
-  def open_round_1
-    open_round_1_button
-    redirect_to pitches_path
-  end
-
-  def open_round_2
-    open_round_2_button
-    redirect_to pitches_path
-  end
-
-  def close_round
-    close_rounds_button
-    redirect_to pitches_path
-  end
 
   private
   def pitch_params
-    params.require(:pitch).permit(:title, :description)
+    params.require(:pitch).permit(:title, :description, :round_id)
   end
 
+  def id_params
+    params.require(:pitch_id)
+  end
 
 end
 

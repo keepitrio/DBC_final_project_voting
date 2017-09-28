@@ -3,5 +3,4 @@ class Vote < ApplicationRecord
   belongs_to :pitch, optional: true 
   belongs_to :round, optional: true
 
-  validates :voter, {presence: true, uniqueness: {scope: :pitch}}
 end

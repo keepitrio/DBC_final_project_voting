@@ -1,8 +1,0 @@
-<%= form_for :round_votes do |f| %>
-	<% @pitches.each do |pitch| %>
-		<%= f.check_box pitch.id %>
-		<%= pitch.title %><br>
-	<% end %>
-	<br>
-	<%= f.submit %>
-<% end %>
